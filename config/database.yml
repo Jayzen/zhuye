@@ -49,4 +49,4 @@ test:
 production:
   <<: *default
   database: advertise_production
-  username: root
+  username: <%= Rails.application.credentials.dig(:production, :mysql_password) %>

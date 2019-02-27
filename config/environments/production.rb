@@ -32,15 +32,15 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = 'https://file.zhengjiajun.com'
-  config.assets.prefix = "assets"
+  #config.action_controller.asset_host = 'https://file.zhengjiajun.com'
+  #config.assets.prefix = "assets"
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
 
   # Store uploaded files on the local file system (see config/storage.yml for options)
-  config.active_storage.service = :cloudinary
+  config.active_storage.service = :local
 
 
   # Mount Action Cable outside main process or domain

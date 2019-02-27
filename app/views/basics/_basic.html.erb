@@ -1,0 +1,63 @@
+<%= form_for(@basic, url: basic_path(@basic), method: :put) do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, placeholder: "输入网站名称", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.text_area :keywords, placeholder: "输入关键词", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <div class="d-flex justify-content-between row-hl">
+      <div class="d-flex flex-row">
+        <div class="item-hl">
+          <a href="#", class="btn btn-sm text-secondary", id="button_trigger" >
+            <i class="fa fa-upload fa-fw"></i><%= @basic.new_record? ? "未上传, 点击上传logo" : "已上传, 点击更新logo" %>
+          </a>
+        </div>
+        <div class="item-hl">
+          <p class="btn btn-sm text-secondary" id="upload_file"></p>
+          <%= f.file_field :logo, hidden: true %>
+        </div>
+      </div>
+
+      <div class="d-flex flex-row-reverse">
+        <div class="form-group">
+          <%= f.submit "更新", class: "btn btn-primary" %>
+        </div>
+        <div class="form-group mr-2 ml-2">
+          <select name="basic[is_name]", class="form-control">
+            <% [[Basic::Status::On, "显示名称"], [Basic::Status::Off, "隐藏名称"]].each do |row| %>
+              <option value="<%= row.first %>" <%= 'selected' if @basic.is_name == row.first %>><%= row.last %></option>
+            <% end -%>
+          </select>
+        </div>
+        <div class="form-group">
+          <select name="basic[is_logo]", class="form-control">
+            <% [[Basic::Status::On, "显示Logo"], [Basic::Status::Off, "隐藏Logo"]].each do |row| %>
+              <option value="<%= row.first %>" <%= 'selected' if @basic.is_logo == row.first %>><%= row.last %></option>
+            <% end -%>
+          </select>
+        </div>
+      </div>
+  </div>
+
+<% end %>
+
+<%= content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      var fileSelect = document.getElementById("button_trigger"),
+          fileElem = document.getElementById("basic_logo");
+
+      fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+          fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+      }, false);
+
+      $("#basic_logo").change(function(){
+        $("#upload_file").text($("#basic_logo").val());
+      })
+    });
+  </script>
+<% end %>

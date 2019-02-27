@@ -1,0 +1,27 @@
+<div id="carousels">
+  <% @carousels.each_with_index do |carousel, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= carousel.name %>
+        <% if @carousels.first == carousel %>
+          <span class="badge badge-danger">首页图片</span>
+        <% end -%>
+        <% if carousel.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <% unless @carousels.first == carousel %>
+          <%= link_to "设为首页图片", set_weight_carousel_path(carousel), remote: true, class: "badge badge-primary" %>
+        <% end -%> 
+        <%= link_to '预览', carousel.attach.url, target: "_blank", class: "badge badge-primary" %>
+        <%= link_to '编辑', edit_carousel_path(carousel), class: "badge badge-primary"%>
+        <%= link_to '删除', delete_carousel_path(carousel), remote: true, class: "badge badge-primary" %>
+        <%= link_to carousel.reveal? ? "隐藏" : "显示", set_reveal_carousel_path(carousel), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

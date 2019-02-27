@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light mb-1">
+  <div class="container">
+    <% if (@show_user && @show_user.basic.name) %>
+      <%= link_to @show_user.basic.name, root_path, class: "navbar-brand" %>
+    <% else %>
+      <%= link_to "衢州吃喝玩乐", root_path, class: "navbar-brand" %>
+    <% end -%>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle navbar-avatar" data-toggle="dropdown">
+                <%= current_user.email.split("@").first %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <% if current_user.option %>
+                  <%= link_to "个人设置", edit_user_registration_path, class: "dropdown-item" %>
+                <% end -%>
+                <% unless current_user.has_roles?(:root_admin) %>
+                  <% if current_user.option %>
+                    <%= link_to "系统设置", options_path, class: "dropdown-item" %>
+                  <% end -%>
+                <% end -%>
+                <% if current_user.has_roles?(:root_admin) %>
+                  <%= link_to "用户管理", admins_path, class: "dropdown-item" %>
+                <% end -%>
+                <% if current_user.option %>
+                  <div class="dropdown-divider"></div>
+                <% end -%>
+                <% unless current_user.has_roles?(:root_admin) %>
+                  <% if current_user.option %>
+                    <%= link_to "显示页面", root_url(subdomain: current_user.subdomain), target: "_blank", class: "dropdown-item" %>
+                  <% end -%>
+                <% end -%>
+                <%= link_to "退出", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
+              </div>
+            </li>
+          <% end -%>
+        </ul>
+      </div>
+  </div>
+</nav>

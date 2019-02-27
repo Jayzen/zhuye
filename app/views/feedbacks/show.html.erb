@@ -1,0 +1,21 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <div class="card mb-3">
+      <div class="card-header text-secondary text-center"><%= @feedback.name %></div>
+      <div class="card-body">
+        <div class="text-secondary text-center">
+          <p><small>
+            <i class="fa fa-user fa-fw"></i><%= @feedback.name %>
+            · 发表于<%= time_ago_in_words(@feedback.created_at) %>前
+          </small></p> 
+        </div>
+        <div class="text-secondary">
+          <%= @feedback.content %>
+        </div>
+      </div>
+    </div>
+    <div><%= link_to "返回列表", feedbacks_path, class: "btn btn-primary" %></div>
+  </div>
+</div>

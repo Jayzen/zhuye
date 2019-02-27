@@ -1,0 +1,54 @@
+<div class="mb-2">
+  <%= render 'shared/official_middle' %>
+</div>
+<div class="row">
+  <% if @show_user.style == "left" %>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
+  <% end -%>
+  <div class="<%= @show_user.style == '' ? 'col-md-12' : 'col-md-9' %> " id="picture">
+    <div class="card">
+      <div class="card-body">
+        <div id="picture">
+          <%= markdown @official_introduction.content if @official_introduction %>
+        </div>  
+      </div>
+    </div>
+  </div>
+  <% if @show_user.style == "right" %>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
+  <% end -%>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    var pictures, i, title, small, value, parentEl;
+    var pictures = document.getElementById("picture").getElementsByTagName("img");
+    for (i=0; i<pictures.length; i++) {
+      value = pictures[i]["alt"]
+      title = document.createElement('div');
+      small = document.createElement('small');
+      small.innerText = value;
+      small.style.textDecoration = 'underline';
+      title.appendChild(small);
+      title.className = 'text-center text-secondary';
+      insertAfter(title, pictures[i]);
+    }
+
+    for (i=0; i<pictures.length; i++) {
+      pictures[i].className = 'img-fluid mx-auto';
+    }
+
+    function insertAfter(newEl, targetEl){
+      parentEl = targetEl.parentNode;
+      if(parentEl.lastChild == targetEl){
+        parentEl.appendChild(newEl);
+      }else{
+        parentEl.insertBefore(newEl,targetEl.nextSibling);
+      }
+    }
+    //envalid the tooltips function
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+<% end %>

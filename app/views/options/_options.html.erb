@@ -1,0 +1,18 @@
+<div id="options">
+  <% @options.each_with_index do |option, index| %>
+    <div class="d-flex justify-content-between">
+       <div>
+         <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+         <%= option.show %>
+         <% if option.reveal? %>
+           <span class="badge badge-danger">已显示</span>
+         <% else %>
+           <span class="badge badge-primary">已隐藏</span>
+         <% end -%>
+       </div>
+       <div>
+         <%= link_to option.reveal? ? "隐藏" : "显示", set_reveal_option_path(option), remote: true, class: "badge badge-primary" %>
+       </div>
+     </div>
+  <% end %>
+</div>

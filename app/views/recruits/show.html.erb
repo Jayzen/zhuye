@@ -1,0 +1,52 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <div class="card mb-3">
+      <div class="card-header text-secondary text-center"><%= @recruit.title %></div>
+      <div class="card-body">
+        <div class="text-secondary text-center">
+          <p><small>
+            <i class="fa fa-user fa-fw"></i><%= @recruit.user.email.split("@").first %>
+            · 发表于<%= time_ago_in_words(@recruit.created_at) %>前
+          </small></p>
+        </div>
+        <div class="text-secondary" id="picture"><%= markdown @recruit.content %></div>
+      </div>
+    </div> 
+    <div><%= link_to "返回列表", recruits_path, class: "btn btn-primary" %></div>
+  </div>
+</div>
+<%= content_for :javascripts do %>
+  <script>
+    var pictures, i, title, small, value, parentEl;
+    var pictures = document.getElementById("picture").getElementsByTagName("img");
+    for (i=0; i<pictures.length; i++) {
+      value = pictures[i]["alt"]
+      title = document.createElement('div');
+      small = document.createElement('small');
+      small.innerText = value;
+      small.style.textDecoration = 'underline';
+      title.appendChild(small);
+      title.className = 'text-center text-secondary';
+      insertAfter(title, pictures[i]);
+    }
+
+    for (i=0; i<pictures.length; i++) {
+      pictures[i].className = 'img-fluid mx-auto';
+    }
+
+    function insertAfter(newEl, targetEl){
+      parentEl = targetEl.parentNode;
+      if(parentEl.lastChild == targetEl){
+        parentEl.appendChild(newEl);
+      }else{
+        parentEl.insertBefore(newEl,targetEl.nextSibling);
+      }
+    }
+    //envalid the tooltips function
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
+  </script>
+<% end %>

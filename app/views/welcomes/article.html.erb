@@ -1,0 +1,27 @@
+<div class="mb-2">
+  <%= render 'shared/official_middle' %>
+</div>
+<div class="row">
+  <% if @show_user.style == "left" %>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
+  <% end -%>
+  <div class="<%= @show_user.style == '' ? 'col-md-12' : 'col-md-9' %>">
+    <% @releases.each_with_index do |release, index| %>
+      <div class="d-flex justify-content-between">
+        <div>
+          <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+          <%= release.title %>
+        </div>
+        <div>
+          <%= link_to '查看', press_path(release), class: "badge badge-primary" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="d-flex justify-content-center">
+      <div><%= paginate @releases %></div>
+    </div>  
+  </div>
+  <% if @show_user.style == "right" %>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
+  <% end -%>
+</div>

@@ -1,0 +1,9 @@
+<% provide(:title, @show_user.basic.name) %>
+<% case @show_user.option %>
+  <% when "advertise" %>
+    <%= render 'advertise' %>
+  <% when "official" %>
+    <%= render 'official' %>
+<% end -%>
+<%= content_for :javascripts do %>
+<% end -%>

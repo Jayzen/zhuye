@@ -1,0 +1,17 @@
+<div id="feedbacks">
+  <% @feedbacks.each_with_index do |feedback, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <span class="<%= feedback.status? ? "text-secondary" : "font-weight-bold" %>"><%= feedback.name %></span>
+        <% if feedback.status? %>
+          <span class="badge badge-primary">已阅读</span>
+        <% end -%> 
+      </div>
+      <div>
+        <%= link_to "查看", feedback_path(feedback), class: "badge badge-primary" %>
+        <%= link_to '删除', delete_feedback_path(feedback), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<div id="contacts">
+  <% @contacts.each_with_index do |contact, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= contact.telephone %> | <%= contact.address %>
+        <% if @contacts.first == contact %>
+          <span class="badge badge-danger">首页显示</span>
+        <% end -%>
+        <% if contact.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <% unless @contacts.first == contact %>
+          <%= link_to "设为首页显示", set_weight_contact_path(contact), remote: true, class: "badge badge-primary" %>
+        <% end -%> 
+        <%= link_to '编辑', edit_contact_path(contact), class: "badge badge-primary"%>
+        <%= link_to '删除', delete_contact_path(contact), remote: true, class: "badge badge-primary" %>
+        <%= link_to contact.reveal? ? "隐藏" : "显示", set_reveal_contact_path(contact), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-body">
+    <% if (@show_user.has_role?(:contact) && @contact) %>
+      <div class="d-flex flex-column">
+        <% if (@contact.is_telephone? && @contact.telephone) %>
+          <div class="text-center"><i class="fa fa-phone fa-lg"></i>  <%= @contact.telephone %></div>
+        <% end -%>
+        <% if (@contact.is_address? && @contact.address) %>
+          <div class="text-center"><i class="fa fa-map-marker fa-lg"></i>  <%= @contact.address %></div>
+        <% end -%>
+        <% if (@contact.is_wechat? && (@contact.wechat.size != 0)) %>
+          <div class="text-center"><i class="fa fa-wechat fa-lg"></i></div>
+          <%= image_tag @contact.wechat_url, class: "card-img-top" %>
+        <% end -%>
+        <% if ((@show_user.map == "left") && @map && (action_name != 'map')) %>
+          <%= render 'shared/official_left_map' %>
+        <% end -%>
+      </div>
+    <% end -%>
+  </div>
+</div>

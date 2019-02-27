@@ -1,0 +1,28 @@
+zh:
+  activerecord:
+    attributes:
+      user:
+        email: "邮件名称"
+        password: "密码"
+        subdomain: "二级域名"
+        password_confirmation: "密码确认"
+        current_password: "当前密码"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "不能为空"
+            password: 
+              blank: "不能为空"
+              too_short: "密码不能少于6个字符"
+            password_confirmation:
+              blank: "不能为空"
+              confirmation: "两次密码不一致"
+            current_password:
+              blank: "不能为空"
+              invalid: "不正确"
+            subdomain:
+              blank: "不能为空"
+              taken: "已经被占用"
+

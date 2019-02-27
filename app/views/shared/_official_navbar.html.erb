@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light mb-1">
+  <div class="container">
+    <% if ( @show_user.basic && @show_user.basic.is_name? ) %>
+      <%= link_to @show_user.basic.name, root_path, class: "navbar-brand" %>
+    <% end -%>
+    <% if ( @show_user.basic && @show_user.basic.is_logo?) %>
+      <%= image_tag @show_user.basic.logo_url, height: "50", class: "rounded"%>
+    <% end -%>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% if @show_user.navbar == "" %>
+            <% @options.each do |option| %>
+              <% unless (option.name == "carousel" || option.name == "contact") %>
+                <li class="nav-item">
+                  <%= link_to "#{option.show}", { controller: "welcomes", action: "#{option.name}" }, class: "nav-link #{ action_name == option.name ? '' : '' }" %>
+                </li>
+              <% end -%>
+            <% end -%>
+          <% end -%>
+          <% if user_signed_in? %>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle navbar-avatar" data-toggle="dropdown">
+                <%= current_user.email.split("@").first %>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <%= link_to "个人设置", edit_user_registration_path, class: "dropdown-item" %>
+                <%= link_to "显示设置", options_path, class: "dropdown-item" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "退出", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
+              </div>
+            </li>
+          <% end -%>
+        </ul>
+      </div>
+  </div>
+</nav>

@@ -1,0 +1,26 @@
+<div id="employees">
+  <% @employees.each_with_index do |employee, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= employee.name %>
+        <% if @employees.first == employee %>
+          <span class="badge badge-danger">首位员工</span>
+        <% end -%>
+        <% if employee.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <% unless @employees.first == employee %>
+          <%= link_to "设为首位员工", set_weight_employee_path(employee), remote: true, class: "badge badge-primary" %>
+        <% end -%>
+        <%= link_to '编辑', edit_employee_path(employee), class: "badge badge-primary"%>
+        <%= link_to '删除', delete_employee_path(employee), remote: true, class: "badge badge-primary" %>
+        <%= link_to employee.reveal? ? "隐藏" : "显示", set_reveal_employee_path(employee), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

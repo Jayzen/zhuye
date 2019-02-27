@@ -1,0 +1,27 @@
+<div id="articles">
+  <% @articles.each_with_index do |article, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= article.title %>
+        <% if @articles.first == article %>
+          <span class="badge badge-danger">已置顶</span>
+        <% end -%>
+        <% if article.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <%= link_to "查看", article_path(article), class: "badge badge-primary" %>
+        <% unless @articles.first == article %>
+          <%= link_to "置顶", set_weight_article_path(article), remote: true, class: "badge badge-primary" %>
+        <% end -%> 
+        <%= link_to '编辑', edit_article_path(article), class: "badge badge-primary" %>
+        <%= link_to '删除', delete_article_path(article), remote: true, class: "badge badge-primary" %>
+        <%= link_to article.reveal? ? "隐藏" : "显示", set_reveal_article_path(article), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,61 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% unless employee.errors.blank? %>
+    <div class="alert alert-danger">
+      <ul class="list-unstyled">
+        <% employee.errors.messages.values.flatten.each do |error| %>
+          <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+
+  <div class="form-group">
+    <%= form.text_field :name, placeholder: "输入姓名", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_field :deputy, placeholder: "输入职位", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.text_area :introduction, placeholder: "输入介绍", rows: 3, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <div class="d-flex flex-row">
+      <div class="item-hl">
+        <a href="#", class="btn btn-sm text-secondary", id="button_trigger" >
+          <i class="fa fa-upload fa-fw"></i><%= employee.new_record? ? "点击上传照片" : "已上传,点击更新照片" %>
+        </a>
+      </div>
+      <div class="item-hl">
+        <p class="btn btn-sm text-secondary" id="upload_file"></p>
+         <%= form.file_field :avatar, hidden: true %>
+      </div>
+    </div> 
+  </div>
+
+  <div class="form-group d-flex flex-row-reverse">
+    <%= form.submit employee.new_record?  ? "创建雇员" : "更新雇员", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      var fileSelect = document.getElementById("button_trigger"),
+          fileElem = document.getElementById("employee_avatar");
+
+      fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+          fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+      }, false);
+
+      $("#employee_avatar").change(function(){
+        $("#upload_file").text($("#employee_avatar").val());
+      })
+    });
+  </script>
+<% end %>

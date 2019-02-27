@@ -1,0 +1,10 @@
+<div class="nav-scroller bg-white box-shadow">
+  <nav class="nav nav-underline">
+    <%= link_to "首页", root_path, class: "nav-link" %>
+    <% @options.each do |option| %>
+      <% unless (option.name == "carousel" || option.name == "basic") %>
+        <%= link_to "#{option.show}", {controller: "welcomes", action: "#{option.name}"}, class: "nav-link #{action_name == option.name ? "active" : ""}" %>
+      <% end -%>
+    <% end -%>
+  </nav>
+</div>

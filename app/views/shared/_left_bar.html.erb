@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-body d-flex flex-column">
+    <div class="mt-2">
+      <a href="<%= basics_path %>">
+        <button type="button" class="btn <%= (controller_name == 'basics') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">推广设置</button>
+      </a>
+    </div> 
+    <% @options.pluck(:name, :show).map{|option| [option[0]+"s", option[1]]}.each do |option| %>
+      <div class="mt-2">
+        <%= link_to "#{option.last}", { controller: "#{option.first}", action: "index"}, class: "btn #{ (controller_name == option.first) ? 'btn-primary' : 'btn-outline-secondary'} btn-block" %>
+      </div>
+    <% end -%>
+  </div>
+</div>

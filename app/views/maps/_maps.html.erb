@@ -1,0 +1,20 @@
+<div id="maps">
+<% @maps.each_with_index do |map, index| %>
+  <div class="d-flex justify-content-between">
+    <div>
+      <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+      <%= map.name %>
+      <% if @maps.first == map %>
+        <span class="badge badge-danger">默认地址</span>
+      <% end -%>
+    </div>
+    <div>
+      <% unless @maps.first == map %>
+        <%= link_to "设为默认地址", set_weight_map_path(map), remote: true, class: "badge badge-primary" %>
+      <% end -%>
+      <%= link_to '编辑', edit_map_path(map), class: "badge badge-primary"%>
+      <%= link_to '删除', delete_map_path(map), remote: true, class: "badge badge-primary" %>
+    </div>
+  </div>
+<% end %>
+</div>

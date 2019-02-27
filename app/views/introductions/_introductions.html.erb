@@ -1,0 +1,27 @@
+<div id="introductions">
+  <% @introductions.each_with_index do |introduction, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= introduction.title %>
+        <% if @introductions.first == introduction %>
+          <span class="badge badge-danger">首页显示</span>
+        <% end -%>
+        <% if introduction.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <%= link_to "查看", introduction_path(introduction), class: "badge badge-primary" %>
+        <% unless @introductions.first == introduction %>
+          <%= link_to "设为首页显示", set_weight_introduction_path(introduction), remote: true, class: "badge badge-primary" %>
+        <% end -%> 
+        <%= link_to '编辑', edit_introduction_path(introduction), class: "badge badge-primary"%>
+        <%= link_to '删除', delete_introduction_path(introduction), remote: true, class: "badge badge-primary" %>
+        <%= link_to introduction.reveal? ? "隐藏" : "显示", set_reveal_introduction_path(introduction), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

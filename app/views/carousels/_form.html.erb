@@ -1,0 +1,79 @@
+<%= form_with(model: carousel, local: true) do |form| %>
+  <% unless carousel.errors.blank? %>
+    <div class="alert alert-danger">
+      <ul class="list-unstyled">
+        <% carousel.errors.messages.values.flatten.each do |error| %>
+          <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%>
+
+  <div class="form-group">
+    <%= form.text_field :name, placeholder: "输入轮播图标题", class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.text_area :introduction, placeholder: "输入轮播图介绍", class: "form-control", id: "mde" %>
+  </div>
+
+  <div class="form-group">
+    <div class="d-flex justify-content-between row-hl">
+      <div class="d-flex flex-row">
+        <div class="item-hl">
+          <a href="#", class="btn btn-sm text-secondary", id="button_trigger" >
+            <i class="fa fa-upload fa-fw"></i><%= @carousel.new_record? ? "点击上传轮播图" : "已上传,点击更新轮播图" %>
+          </a>
+        </div>
+        <div class="item-hl">
+          <p class="btn btn-sm text-secondary" id="upload_file"></p>
+          <%= form.file_field :attach, hidden: true %>
+        </div>
+      </div>
+      <div class="d-flex flex-row-reverse">
+        <div class="form-group">
+          <%= form.submit carousel.new_record?  ? "创建" : "更新", class: "btn btn-primary" %>
+        </div>
+        <div class="form-group mr-2 ml-2">
+          <select name="carousel[is_name]", class="form-control">
+            <% [[Carousel::Status::On, "显示标题"], [Carousel::Status::Off, "隐藏标题"]].each do |row| %>
+              <option value="<%= row.first %>" <%= 'selected' if @carousel.is_name == row.first %>><%= row.last %></option>
+            <% end -%>
+          </select>
+        </div> 
+        <div class="form-group">
+          <select name="carousel[is_introduction]", class="form-control">
+          <% [[Carousel::Status::On, "显示介绍"], [Carousel::Status::Off, "隐藏介绍"]].each do |row| %>
+            <option value="<%= row.first %>" <%= 'selected' if @carousel.is_introduction == row.first %>><%= row.last %></option>
+          <% end -%>
+          </select>
+        </div>   
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      var fileSelect = document.getElementById("button_trigger"),
+          fileElem = document.getElementById("carousel_attach");
+
+      fileSelect.addEventListener("click", function (e) {
+        if (fileElem) {
+          fileElem.click();
+        }
+        e.preventDefault(); // prevent navigation to "#"
+      }, false);
+
+      $("#carousel_attach").change(function(){
+        $("#upload_file").text($("#carousel_attach").val());
+      })
+    });
+
+    var simplemde = new SimpleMDE({ 
+      element: document.getElementById("mde"),
+      toolbar: ["bold", "italic", "heading", "|", "preview", "side-by-side", "fullscreen", "|", "guide"]
+    });
+  </script>
+<% end %>

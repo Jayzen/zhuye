@@ -1,0 +1,27 @@
+<div id="photographs">
+  <% @photographs.each_with_index do |photograph, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= photograph.name %>
+        <% if @photographs.first == photograph %>
+          <span class="badge badge-danger">首张图片</span>
+        <% end -%> 
+        <% if photograph.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%> 
+      </div>
+      <div>
+        <% unless @photographs.first == photograph %>
+          <%= link_to "设为首张图片", set_weight_photograph_path(photograph), remote: true, class: "badge badge-primary" %>
+        <% end -%>
+        <%= link_to '预览', photograph.image.url, target: "_blank", class: "badge badge-primary" %>
+        <%= link_to '编辑', edit_photograph_path(photograph), class: "badge badge-primary" %>
+        <%= link_to '删除', delete_photograph_path(photograph), remote: true, class: "badge badge-primary" %>
+        <%= link_to photograph.reveal? ? "隐藏" : "显示", set_reveal_photograph_path(photograph), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end -%> 
+</div>

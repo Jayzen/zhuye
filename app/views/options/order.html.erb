@@ -1,0 +1,18 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'navbar_left_bar' %></div>
+  <div class="card col-md-9">
+    <div class="card-body sortable">
+      <div class="mb-2"><span class="small badge badge-primary">拖拽条目可实现导航栏条目排序</span></div>
+      <% @options.each_with_index do |option, index| %>
+        <div class="option" data-id="<%= option.id %>">
+          <div>
+            <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+            <%= option.show %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

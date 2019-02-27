@@ -1,0 +1,42 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <%= form_with(model: @map, local: true) do |form| %>
+      <% unless @map.errors.blank? %>
+        <div class="alert alert-danger">
+          <ul class="list-unstyled">
+            <% @map.errors.messages.values.flatten.each do |error| %>
+              <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+            <% end -%>
+          </ul>
+        </div>
+      <% end -%>
+
+      <div class="form-group">
+        <%= form.text_field :name, placeholder: "输入地址", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.number_field :level, placeholder: "输入放大等级", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_field :longitude, placeholder: "输入经度", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= form.text_field :latitude, placeholder: "输入纬度", class: "form-control" %>
+      </div>
+
+      <div class="form-group d-flex justify-content-between">
+        <div>
+          <span class="small"><a href="http://api.map.baidu.com/lbsapi/creatmap/">坐标点查看</a><span>
+        </div>
+        <div>
+          <%= form.submit "更新", class: "btn btn-primary" %>
+        </div>  
+      </div>
+    <% end -%>
+  </div>
+</div>

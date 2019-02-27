@@ -1,0 +1,33 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'navbar_left_bar' %></div>
+  <div class="card col-md-9">
+    <div class="card-body">
+      <div class="mb-2"><span class="small badge badge-primary">点击条目可更新条目名称</span></div>
+      <% @options.each_with_index do |option, index| %>
+          <%= form_for(option, url: set_modify_options_path, method: :put) do |f| %>
+            <%= f.hidden_field :id %>
+            <div class="d-flex flex-row mt-1">
+              <div class="d-flex flex-row">
+                <div class="mt-2"><%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.</div>
+                <div class="<%= option.id%>-show"><%= f.text_field :show, class: "form-control border-0" %></div>
+              </div>
+              <div class="<%= option.id%>-btn d-none mt-1 ml-2"><%= f.submit "修改", class: "btn btn-primary btn-sm" %></div>
+            </div>
+          <% end -%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    <% @options.each do |option| %>
+      $('.<%= option.id%>-show').click(
+        function(){
+          $('.<%= option.id %>-btn').removeClass("d-none")
+        }
+      )
+    <% end -%>
+  </script>
+<% end %>

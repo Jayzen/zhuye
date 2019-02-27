@@ -1,0 +1,62 @@
+<div class="card-deck">
+  <div class="card card-template-official">
+    <div class="card-body text-center card-official-show">
+      <i class="fa fa-internet-explorer fa-3x"></i>
+      <p>通用网站</p>
+      <p class="text-secondary"><small>适用于一般公司主页</small></p>
+    </div>
+    <div class="card-body text-center card-official-hide d-none">
+      <div class="mt-4 mb-4">
+        <%= link_to official_path, class: "btn btn-outline-primary" do %>
+          <i class="fa fa-cog fa-fw"></i>去设置
+        <% end -%>
+      </div>
+    </div>
+  </div>
+  <div class="card card-template-advertise">
+    <div class="card-body text-center card-advertise-show">
+      <i class="fa fa-internet-explorer fa-3x"></i>
+      <p>单页面网站</p>
+      <p class="text-secondary"><small>适用于单页面产品介绍</small></p>
+    </div>
+    <div class="card-body text-center card-advertise-hide d-none">
+      <div class="mt-4 mb-4">
+        <%= link_to advertise_path, class: "btn btn-outline-primary" do %>
+          <i class="fa fa-cog fa-fw"></i>去设置
+        <% end -%>
+      </div>
+    </div>
+  </div>
+  <div class="card card-template">
+    <div class="card-body text-center card-show">
+      <i class="fa fa-plus fa-3x"></i>
+      <p>更多模板</p>
+    </div>
+  </div>
+  <div class="card card-template">
+    <div class="card-body text-center card-show">
+      <i class="fa fa-plus fa-3x"></i>
+      <p>更多模板</p>
+    </div>
+  </div>
+</div>
+
+<%= content_for :javascripts do %>
+  <script>
+    $('.card-template-official').hover(function(){
+      $('.card-official-hide').removeClass("d-none");
+      $('.card-official-show').hide();
+    },function(){
+      $('.card-official-hide').addClass("d-none");
+      $('.card-official-show').show();
+    });
+
+   $('.card-template-advertise').hover(function(){
+      $('.card-advertise-hide').removeClass("d-none");
+      $('.card-advertise-show').hide();
+    },function(){
+      $('.card-advertise-hide').addClass("d-none");
+      $('.card-advertise-show').show();
+   }); 
+  </script>
+<% end %>

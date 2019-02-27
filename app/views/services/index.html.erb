@@ -1,0 +1,14 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <div id="services">
+      <%= render 'services' %>
+    </div>
+    <div class="d-flex justify-content-between mt-2">
+      <div><%= link_to '新建', new_service_path, class: "btn btn-primary" %></div>
+      <div><%= paginate @services %></div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/confirm_modal' %>

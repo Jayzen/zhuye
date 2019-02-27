@@ -1,0 +1,13 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <div id="feedbacks">
+      <%= render 'feedbacks' %>
+    </div>
+    <div class="d-flex justify-content-between mt-2">
+      <div><%= paginate @feedbacks %></div>
+    </div>
+  </div>
+</div>
+<%= render 'shared/confirm_modal' %>

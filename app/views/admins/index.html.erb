@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center mt-5">
+  <div class="col-md-6">
+    <%= form_tag("/admins/search", method: :get) do %>
+      <div id="custom-search-input">
+        <div class="input-group col-md-12">
+          <%= text_field_tag "email", nil, class: "form-control input-lg", placeholder: "输入查询邮箱.." %>
+          <span class="input-group-btn">
+            <%= button_tag(type: "submit", class: "btn btn-info btn-lg") do %>
+              <i class="fa fa-search"></i>
+            <% end -%>
+          </span>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+</div>
+
+<% @users.each_with_index do |user, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= user.email %>
+        <% if user == current_user %>
+          <span class="badge badge-primary">当前用户</span>
+        <% end %>
+        <% if user.has_roles?(:root_admin) %>
+          <span class="badge badge-danger">admin</span>
+        <% end %>
+        <% if user.confirmed_at.nil? %>
+          <span class="badge badge-danger">unconfirmed</span>
+        <% end %>
+        <% unless user.locked_at.nil? %>
+          <span class="badge badge-danger">locked</span>
+        <% end %>
+      </div>
+      <div>
+        <% unless user == current_user %>
+          <%= link_to '删除', delete_admin_path(user), remote: true, class: "badge badge-primary" %>
+        <% end -%>
+        <% unless user.has_roles?(:root_admin) %>
+          <%= link_to "设置", privileges_admin_path(user), class: "badge badge-primary" %>
+        <% end -%>
+      </div>
+    </div>
+<% end %>
+<div class="mt-2">
+  <%= paginate @users %>
+</div>
+<%= render 'shared/confirm_modal' %>

@@ -1,0 +1,21 @@
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <% @carousels.each do |carousel| %>
+      <div class="carousel-item <%= @carousels.first == carousel ? 'active' : '' %>">
+        <%= image_tag carousel.attach_url, class: "d-block w-100 rounded" %>
+        <div class="carousel-caption d-none d-md-block">
+          <h5><%= carousel.name if carousel.is_name? %></h5>
+          <p><%= carousel.introduction if carousel.is_introduction? %></p>
+        </div>
+      </div>
+    <% end -%>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>

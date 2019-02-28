@@ -9,7 +9,7 @@ class SelectsController < ApplicationController
 
   def advertise
     current_user.option = "advertise"
-    current_user.roles = ["introduction", "employee", "carousel", "map", "photograph", "article", "contact"]
+    current_user.roles = ["introduction", "employee", "carousel", "photograph", "article", "contact"]
     current_user.save
     create_options
     create_set_advertise
@@ -18,7 +18,7 @@ class SelectsController < ApplicationController
 
   def official
     current_user.option = "official"
-    current_user.roles = ["introduction", "service", "article", "feedback", "recruit", "carousel", "map", "contact"]
+    current_user.roles = ["introduction", "service", "article", "feedback", "recruit", "carousel", "contact"]
     current_user.save
     create_options
     redirect_to options_path
@@ -30,7 +30,6 @@ class SelectsController < ApplicationController
       case current_user.option
       when "advertise"
         current_user.options.create(name: "employee", show: "员工管理")
-        current_user.options.create(name: "map", show: "地图管理")
         current_user.options.create(name: "photograph", show: "照片管理")
         current_user.options.create(name: "article", show: "文章管理") 
         current_user.options.create(name: "carousel", show: "轮播图管理")
@@ -43,7 +42,6 @@ class SelectsController < ApplicationController
         current_user.options.create(name: "feedback", show: "用户反馈")
         current_user.options.create(name: "recruit", show: "招聘信息")
         current_user.options.create(name: "carousel", show: "轮播图管理")
-        current_user.options.create(name: "map", show: "公司地址")
         current_user.options.create(name: "contact", show: "联系方式")
       end
     end

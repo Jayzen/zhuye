@@ -14,7 +14,7 @@
   </div>
   
   <div class="form-group">
-    <%= form.text_area :introduction, placeholder: "输入轮播图介绍", class: "form-control", id: "mde" %>
+    <%= form.text_area :introduction, placeholder: "输入轮播图介绍", class: "form-control" %>
   </div>
 
   <div class="form-group">
@@ -69,11 +69,6 @@
       $("#carousel_attach").change(function(){
         $("#upload_file").text($("#carousel_attach").val());
       })
-    });
-
-    var simplemde = new SimpleMDE({ 
-      element: document.getElementById("mde"),
-      toolbar: ["bold", "italic", "heading", "|", "preview", "side-by-side", "fullscreen", "|", "guide"]
     });
   </script>
 <% end %>

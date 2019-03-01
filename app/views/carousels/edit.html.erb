@@ -1,4 +1,6 @@
-<%= render 'shared/nav' %>
+<% unless current_user.has_role?(:root_admin) %>
+  <%= render 'shared/nav' %>
+<% end -%>
 <div class="row">
   <div class="col-md-3"><%= render 'shared/left_bar' %></div>
   <div class="col-md-9">

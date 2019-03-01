@@ -1,0 +1,26 @@
+<div id="tags">
+  <% @tags.each_with_index do |tag, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= tag.name %>
+        <% if @tags.first == tag %>
+          <span class="badge badge-danger">已置顶</span>
+        <% end -%>
+        <% if tag.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <% unless @tags.first == tag %>
+          <%= link_to "置顶", set_weight_tag_path(tag), remote: true, class: "badge badge-primary" %>
+        <% end -%> 
+        <%= link_to '编辑', edit_tag_path(tag), class: "badge badge-primary" %>
+        <%= link_to '删除', delete_tag_path(tag), remote: true, class: "badge badge-primary" %>
+        <%= link_to tag.reveal? ? "隐藏" : "显示", set_reveal_tag_path(tag), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

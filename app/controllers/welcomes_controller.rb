@@ -4,6 +4,8 @@ class WelcomesController < ApplicationController
   before_action :set_select, only: [:index]
 
   def index
+    @user = User.find_by(email: "demo@demo.com")
+    @carousels = @user.carousels.where(reveal: true)
   end
 
   def show

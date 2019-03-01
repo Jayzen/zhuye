@@ -42,7 +42,7 @@ Rails.application.routes.draw do
     get 'attributes_reveal', on: :member
   end
 
-  resources :contacts, :introductions, :articles, :services, :recruits do
+  resources :contacts, :introductions, :articles, :services, :recruits, :tags do
     get 'delete', on: :member
     get 'set_weight', on: :member
     get 'set_reveal', on: :member

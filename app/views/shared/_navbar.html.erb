@@ -1,9 +1,19 @@
 <nav class="navbar navbar-expand-sm navbar-light bg-light mb-1">
   <div class="container">
-    <% if (@show_user && @show_user.basic.name) %>
-      <%= link_to @show_user.basic.name, root_path, class: "navbar-brand" %>
+    <% if user_signed_in? %>
+      <% if ( current_user.basic && current_user.basic.is_name? ) %>
+        <%= link_to current_user.basic.name, root_path, class: "navbar-brand" %>
+      <% end -%>
+      <% if ( current_user.basic && current_user.basic.is_logo?) %>
+        <%= image_tag current_user.basic.logo_url, height: "50", class: "rounded"%>
+      <% end -%>
     <% else %>
-      <%= link_to "衢州吃喝玩乐", root_path, class: "navbar-brand" %>
+      <% if ( @user && @user.basic && @user.basic.is_name? ) %>
+        <%= link_to @user.basic.name, root_path, class: "navbar-brand" %>
+      <% end -%>
+      <% if ( @user && @user.basic && @user.basic.is_logo?) %>
+        <%= image_tag @user.basic.logo_url, height: "50", class: "rounded"%>
+      <% end -%>
     <% end -%>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -24,6 +34,7 @@
                 <% end -%>
                 <% if current_user.has_roles?(:root_admin) %>
                   <%= link_to "用户管理", admins_path, class: "dropdown-item" %>
+                  <%= link_to "主页管理", basics_path, class: "dropdown-item" %>
                 <% end -%>
                 <% if current_user.option %>
                   <div class="dropdown-divider"></div>

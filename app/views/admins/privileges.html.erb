@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header text-center">
-    权限设置
+    <%= @user.email.split("@").first%>的权限设置
   </div>
   <div class="card-body">
     <%= form_for(@user, url: update_privilege_admin_path(@user), method: 'put') do |f| %>

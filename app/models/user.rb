@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_many :recruits, dependent: :destroy
   has_many :feedbacks, dependent: :destroy
   has_many :pictures, dependent: :destroy
+  has_many :tags, dependent: :destroy
 
   after_create :set_role, :create_one_basic, :sanitize_subdomain
   

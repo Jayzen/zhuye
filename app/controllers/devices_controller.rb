@@ -1,13 +1,17 @@
 class DevicesController < ApplicationController
-  before_action :authenticate_user!, except: [:show]
-  before_action :set_device, only: [:rqrcode, :edit, :update, :destroy, :delete, :set_weight, :set_reveal]
+  before_action :authenticate_user!, except: [:public_show]
+  before_action :set_device, only: [:rqrcode, :show, :edit, :update, :destroy, :delete, :set_weight, :set_reveal]
   before_action :set_devices, only: [:index, :set_weight, :set_reveal]
   before_action :set_left_bar
   before_action :set_categories, only: [:new, :edit]
   #access device: :all, message: "当前用户无权访问"
 
+  def public_show
+    @device = Device.find(params[:id])
+  end
+
   def rqrcode
-    @qr = RQRCode::QRCode.new(device_url(@device), :size => 5, :level => :h )
+    @qr = RQRCode::QRCode.new(public_show_device_url(@device), :size => 6, :level => :h )
   end
   
   # GET /devices

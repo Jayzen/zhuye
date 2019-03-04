@@ -9,6 +9,9 @@
       <div class="card-body">
         <div class="text-secondary text-center">
           <p><small>
+            <% if @article.tag %>
+              <i class="fa fa-tag fa-fw"></i><%= @article.tag.name %> ·
+            <% end -%>
             <i class="fa fa-user fa-fw"></i><%= @article.user.email.split("@").first %>
             · 发表于<%= time_ago_in_words(@article.created_at) %>前
           </small></p>

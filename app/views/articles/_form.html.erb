@@ -9,6 +9,18 @@
     </div>
   <% end -%>
 
+  <% if current_user.has_role?(:root_admin) %>
+    <div class="form-group">
+      <select name="article[tag_id]", class="form-control">
+        <option></option>
+        <option value="" selected disabled hidden>选择标签..</option>
+          <% current_user.tags.each do |tag| %>
+            <option value="<%= tag.id %>" <%= article.tag_id == tag.id ? 'selected' : '' %>><%= tag.name %></option>
+          <% end -%>
+      </select>
+    </div> 
+  <% end -%>
+
   <div class="form-group">
     <%= form.text_field :title, placeholder: "输入标题", class: "form-control" %>
   </div>

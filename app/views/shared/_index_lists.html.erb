@@ -1,0 +1,7 @@
+<div class="nav-scroller bg-white box-shadow">
+  <nav class="nav nav-underline">
+     <% @tags.each do |tag| %>
+       <%= link_to tag.name, category_path(tag), class: "nav-link" %>
+     <% end -%>
+  </nav>
+</div>

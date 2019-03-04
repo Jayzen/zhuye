@@ -86,4 +86,5 @@ Rails.application.routes.draw do
     
   resources :basics
   resources :pictures, only: [:create]
+  get 'category/:id', to: "welcomes#category", as: :category 
 end

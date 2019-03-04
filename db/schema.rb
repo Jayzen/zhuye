@@ -39,8 +39,10 @@ ActiveRecord::Schema.define(version: 2019_12_06_105763) do
     t.datetime "weight"
     t.boolean "reveal", default: false
     t.integer "user_id"
+    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_articles_on_tag_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 

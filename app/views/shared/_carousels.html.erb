@@ -1,5 +1,5 @@
 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <% if @user.has_role?(:root_admin) %>
+  <% if (@user && @user.has_role?(:root_admin)) %>
     <ol class="carousel-indicators">
       <% @carousels.each_with_index do |carousel, index| %>
         <li data-target="#carouselExampleControls" data-slide-to="<%= index%>" class="<%= @carousels.first == carousel ? 'active' : '' %>"></li>
@@ -17,7 +17,7 @@
       </div>
     <% end -%>
   </div>
-  <% unless @user.has_role?(:root_admin) %>
+  <% unless (@user && @user.has_role?(:root_admin)) %>
     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>

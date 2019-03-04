@@ -2,7 +2,7 @@
   <nav class="nav nav-underline">
     <%= link_to "首页", root_path, class: "nav-link" %>
     <% @options.each do |option| %>
-      <% unless (option.name == "carousel" || option.name == "basic") %>
+      <% unless (option.name == "carousel" || option.name == "basic" || option.name == "contact") %>
         <%= link_to "#{option.show}", {controller: "welcomes", action: "#{option.name}"}, class: "nav-link #{action_name == option.name ? "active" : ""}" %>
       <% end -%>
     <% end -%>

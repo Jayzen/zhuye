@@ -3,6 +3,9 @@
     <div class="d-flex justify-content-between">
       <div>
         <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <% if article.tag %>
+          <%= article.tag.name %> | 
+        <% end -%>
         <%= article.title %>
         <% if @articles.first == article %>
           <span class="badge badge-danger">已置顶</span>

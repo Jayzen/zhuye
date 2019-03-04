@@ -1,5 +1,6 @@
 class Tag < ApplicationRecord
   belongs_to :user, optional: true
+  has_many :articles, dependent: :destroy
 
   default_scope { order("weight desc") }
 

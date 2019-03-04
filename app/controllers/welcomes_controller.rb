@@ -1,12 +1,18 @@
 class WelcomesController < ApplicationController
-  before_action :ensure_subdomain, except: [:index]
-  before_action :find_options, except: [:index]
+  before_action :ensure_subdomain, except: [:index, :category]
+  before_action :find_options, except: [:index, :category]
   before_action :set_select, only: [:index]
 
   def index
     @user = User.find_by(email: "demo@demo.com")
     @carousels = @user.carousels.where(reveal: true)
+    @tags = @user.tags.where(reveal: true)
     set_meta_tags(keywords: @user.basic.keywords)
+  end
+
+  def category
+    @tag = Tag.find(params[:id])
+    @articles = @tag.articles
   end
 
   def show

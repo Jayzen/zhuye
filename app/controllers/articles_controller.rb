@@ -79,11 +79,11 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :content)
+      params.require(:article).permit(:title, :content, :tag_id)
     end
 
     def set_articles
-      @articles = current_user.articles.page(params[:page])
+      @articles = current_user.articles.joins(:tag).page(params[:page])
     end
 
     def set_left_bar

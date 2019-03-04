@@ -11,7 +11,7 @@
         <ul class="navbar-nav ml-auto">
           <% if @show_user.navbar == "" %>
             <% @options.each do |option| %>
-              <% unless (option.name == "carousel" || option.name == "contact") %>
+              <% unless (option.name == "carousel" || option.name == "contact" || ) %>
                 <li class="nav-item">
                   <%= link_to "#{option.show}", { controller: "welcomes", action: "#{option.name}" }, class: "nav-link #{ action_name == option.name ? '' : '' }" %>
                 </li>

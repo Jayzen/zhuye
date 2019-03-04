@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'select', to: "selects#select", as: :select
   get 'advertise', to: "selects#advertise", as: :advertise
   get 'official', to: "selects#official", as: :official
+  get 'dimension', to: "selects#dimension", as: :dimension
 
   resources :admins do
     get 'delete', on: :member
@@ -42,12 +43,17 @@ Rails.application.routes.draw do
     get 'attributes_reveal', on: :member
   end
 
-  resources :contacts, :introductions, :articles, :services, :recruits, :tags do
+  resources :contacts, :introductions, :articles, :services, :recruits, :tags, :categories do
     get 'delete', on: :member
     get 'set_weight', on: :member
     get 'set_reveal', on: :member
   end 
-  
+
+  resources :devices do 
+    get 'rqrcode', on: :member
+    get 'delete', on: :member
+  end
+
   resources :feedbacks do
     get 'delete', on: :member
   end
@@ -86,5 +92,5 @@ Rails.application.routes.draw do
     
   resources :basics
   resources :pictures, only: [:create]
-  get 'category/:id', to: "welcomes#category", as: :category 
+  get 'kind/:id', to: "welcomes#kind", as: :kind
 end

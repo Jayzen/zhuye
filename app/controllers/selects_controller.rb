@@ -24,6 +24,14 @@ class SelectsController < ApplicationController
     redirect_to options_path
   end
 
+  def dimension
+    current_user.option = "dimension"
+    current_user.roles = ["category", "device"]
+    current_user.save
+    create_options
+    redirect_to options_path
+  end 
+
   private
     def create_options
       current_user.options.destroy_all
@@ -43,6 +51,9 @@ class SelectsController < ApplicationController
         current_user.options.create(name: "recruit", show: "招聘信息")
         current_user.options.create(name: "carousel", show: "轮播图管理")
         current_user.options.create(name: "contact", show: "联系方式")
+      when 'dimension'
+        current_user.options.create(name: "category", show: "分类管理")
+        current_user.options.create(name: "device", show: "设备管理")
       end
     end
 

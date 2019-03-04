@@ -72,6 +72,16 @@ ActiveRecord::Schema.define(version: 2019_12_06_105763) do
     t.index ["user_id"], name: "index_carousels_on_user_id"
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "weight"
+    t.boolean "reveal", default: false
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_categories_on_user_id"
+  end
+
   create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "telephone"
     t.string "address"
@@ -85,6 +95,22 @@ ActiveRecord::Schema.define(version: 2019_12_06_105763) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contacts_on_user_id"
+  end
+
+  create_table "devices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.text "details"
+    t.string "pic"
+    t.string "location"
+    t.boolean "status"
+    t.datetime "weight"
+    t.boolean "reveal", default: false
+    t.integer "user_id"
+    t.integer "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_devices_on_category_id"
+    t.index ["user_id"], name: "index_devices_on_user_id"
   end
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

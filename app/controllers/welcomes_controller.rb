@@ -1,6 +1,6 @@
 class WelcomesController < ApplicationController
-  before_action :ensure_subdomain, except: [:index, :category]
-  before_action :find_options, except: [:index, :category]
+  before_action :ensure_subdomain, except: [:index, :kind]
+  before_action :find_options, except: [:index, :kind]
   before_action :set_select, only: [:index]
 
   def index
@@ -10,7 +10,7 @@ class WelcomesController < ApplicationController
     set_meta_tags(keywords: @user.basic.keywords)
   end
 
-  def category
+  def kind
     @tag = Tag.find(params[:id])
     @articles = @tag.articles
   end
@@ -33,6 +33,8 @@ class WelcomesController < ApplicationController
       render layout: "advertise"
     elsif @show_user.option == "official"
       render layout: "official"
+    elsif @show_user.option == "dimension"
+      render layout: "dimension"
     end
   end
 

@@ -1,0 +1,26 @@
+<div id="categories">
+  <% @categories.each_with_index do |category, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= category.name %>
+        <% if @categories.first == category %>
+          <span class="badge badge-danger">已置顶</span>
+        <% end -%>
+        <% if category.reveal? %>
+          <span class="badge badge-danger">已显示</span>
+        <% else %>
+          <span class="badge badge-primary">已隐藏</span>
+        <% end -%>
+      </div>
+      <div>
+        <% unless @categories.first == category %>
+          <%= link_to "置顶", set_weight_category_path(category), remote: true, class: "badge badge-primary" %>
+        <% end -%> 
+        <%= link_to '编辑', edit_category_path(category), class: "badge badge-primary" %>
+        <%= link_to '删除', delete_category_path(category), remote: true, class: "badge badge-primary" %>
+        <%= link_to category.reveal? ? "隐藏" : "显示", set_reveal_category_path(category), remote: true, class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

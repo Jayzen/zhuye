@@ -27,12 +27,20 @@
       </div>
     </div>
   </div>
-  <div class="card card-template">
-    <div class="card-body text-center card-show">
-      <i class="fa fa-plus fa-3x"></i>
-      <p>更多模板</p>
+  <div class="card card-template-dimension">
+    <div class="card-body text-center card-dimension-show">
+      <i class="fa fa-internet-explorer fa-3x"></i>
+      <p>物联网设备</p>
+      <p class="text-secondary"><small>适用物联网设备管理</small></p>
     </div>
-  </div>
+    <div class="card-body text-center card-dimension-hide d-none">
+      <div class="mt-4 mb-4">
+        <%= link_to dimension_path, class: "btn btn-outline-primary" do %>
+          <i class="fa fa-cog fa-fw"></i>去设置
+        <% end -%>
+      </div>
+    </div>
+  </div> 
   <div class="card card-template">
     <div class="card-body text-center card-show">
       <i class="fa fa-plus fa-3x"></i>
@@ -57,6 +65,13 @@
     },function(){
       $('.card-advertise-hide').addClass("d-none");
       $('.card-advertise-show').show();
+    });
+    $('.card-template-dimension').hover(function(){
+      $('.card-dimension-hide').removeClass("d-none");
+      $('.card-dimension-show').hide();
+    },function(){
+      $('.card-dimension-hide').addClass("d-none");
+      $('.card-dimension-show').show();
    }); 
   </script>
 <% end %>

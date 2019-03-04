@@ -1,0 +1,29 @@
+<% unless current_user.has_role?(:root_admin) %>
+  <%= render 'shared/nav' %>
+<% end -%>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <div class="card mb-3">
+      <div class="card-header text-secondary text-center"><%= @device.name %></div>
+      <div class="card-body">
+        <div class="text-secondary text-center">
+          <p><small>
+            <% if @device.category %>
+              <i class="fa fa-tag fa-fw"></i><%= @device.category.name %> ·
+            <% end -%>
+            <i class="fa fa-user fa-fw"></i><%= @device.user.email.split("@").first %>
+            · 发表于<%= time_ago_in_words(@device.created_at) %>前
+          </small></p>
+        </div>
+        <div class="text-secondary">
+          设备名称: <%= @device.name %><br>
+          设备详情: <%= @device.details %><br>
+          设备位置：<%= @device.location %><br>
+          设备状态：<%= @device.status? ? "正常状态" : "设备维护中" %>
+        </div>
+      </div>
+    </div> 
+    <div><%= link_to "列表", devices_path, class: "btn btn-primary" %></div>
+  </div>
+</div>

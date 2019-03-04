@@ -1,0 +1,21 @@
+<div id="devices">
+  <% @devices.each_with_index do |device, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= device.name %>
+        <% if device.status? %>
+          <span class="badge badge-danger">正常</span>
+        <% else %>
+          <span class="badge badge-primary">维修中</span>
+        <% end -%>
+      </div>
+      <div>
+        <%= link_to "查看", device_path(device), class: "badge badge-primary" %>
+        <%= link_to '编辑', edit_device_path(device), class: "badge badge-primary" %>
+        <%= link_to '删除', delete_device_path(device), remote: true, class: "badge badge-primary" %>
+        <%= link_to '查看二维码', rqrcode_device_path(device), class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

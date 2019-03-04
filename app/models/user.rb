@@ -5,7 +5,8 @@ class User < ApplicationRecord
   ## The :root_admin can access any page regardless of access settings. Use with caution!   ##
   ## The multiple option can be set to true if you need users to have multiple roles.       ##
   petergate(roles: [:root_admin, :employee, :carousel, :map, :photograph, :article, 
-  :introduction, :service, :feedback, :recruit, :contact, :plat], multiple: true)                                      ##
+  :introduction, :service, :feedback, :recruit, :contact, :plat,
+  :category, :device], multiple: true)                                      ##
   ############################################################################################ 
  
 
@@ -32,6 +33,8 @@ class User < ApplicationRecord
   has_many :feedbacks, dependent: :destroy
   has_many :pictures, dependent: :destroy
   has_many :tags, dependent: :destroy
+  has_many :categories, dependent: :destroy
+  has_many :devices, dependent: :destroy
 
   after_create :set_role, :create_one_basic, :sanitize_subdomain
   

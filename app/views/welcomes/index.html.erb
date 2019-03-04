@@ -5,7 +5,7 @@
   <div class="d-flex col-md-8 flex-wrap">
     <% @tags.each do |tag| %>
       <div class="card col-md-6 mb-2">
-        <div class="card-header bg-transparent border-success"><%= link_to tag.name, category_path(tag) %></div>
+        <div class="card-header bg-transparent border-success"><%= link_to tag.name, kind_path(tag) %></div>
         <div class="card-body text-center">
           <ul>
             <% tag.articles do |article| %>

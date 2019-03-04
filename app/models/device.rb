@@ -1,7 +1,7 @@
 class Device < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :category, optional: true
-
+  has_many :device_attaches, dependent: :destroy
   default_scope { order("weight desc") }
 
   validates :name, presence: { message: "名称不能为空" }

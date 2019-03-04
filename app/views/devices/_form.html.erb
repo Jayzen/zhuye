@@ -1,4 +1,4 @@
-<%= form_with(model: device, local: true) do |form| %>
+<%= form_with(model: device, local: true, html: { multipart: true }) do |form| %>
   <% unless device.errors.blank? %>
     <div class="alert alert-danger">
       <ul class="list-unstyled">
@@ -37,6 +37,10 @@
   
   <div class="form-group">
     <%= form.text_area :details, placeholder: "输入详细信息", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= file_field_tag "images[]", type: :file, multiple: true %>
   </div>
   
   <div class="form-group">

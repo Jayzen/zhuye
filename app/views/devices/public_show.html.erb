@@ -1,4 +1,28 @@
-设备名称: <%= @device.name %><br>
-设备详情: <%= @device.details %><br>
-设备位置：<%= @device.location %><br>
-设备状态：<%= @device.status? ? "正常状态" : "设备维护中" %>
+<div class="card mb-3">
+   <div class="card-header text-secondary text-center"><%= @device.name %></div>
+   <div class="card-body">
+        <div class="text-secondary">
+          设备名称: <%= @device.name %><br>
+          设备详情: <%= @device.details %><br>
+          设备位置：<%= @device.location %><br>
+          设备状态：<%= @device.status? ? "正常状态" : "设备维护中" %>
+        </div>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <% @device.device_attaches.each do |attach| %>
+              <div class="carousel-item <%= @device.device_attaches.first == attach ? 'active' : '' %>">
+                <%= image_tag attach.name_url, class: "d-block w-100 rounded" %>
+              </div>
+            <% end -%>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>

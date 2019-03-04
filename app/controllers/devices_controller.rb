@@ -13,7 +13,12 @@ class DevicesController < ApplicationController
   def rqrcode
     @qr = RQRCode::QRCode.new(public_show_device_url(@device), :size => 6, :level => :h )
   end
-  
+
+  def lists
+    @device = current_user.devices.find(params[:id])
+    @device_attaches = @device.device_attaches
+  end
+
   # GET /devices
   def index
   end
@@ -51,8 +56,10 @@ class DevicesController < ApplicationController
   # POST /devices
   def create
     @device = current_user.devices.new(device_params)
-
     if @device.save
+      params[:images].each do |image|
+        @device.device_attaches.create(name: image)
+      end
       flash[:success] = "创建成功"
       redirect_to devices_path
     else
@@ -89,7 +96,7 @@ class DevicesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def device_params
-      params.require(:device).permit(:name, :details, :category_id, :pic, :location, :status)
+      params.require(:device).permit(:name, :details, :category_id, :location, :status)
     end
 
     def set_devices

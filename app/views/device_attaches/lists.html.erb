@@ -1,0 +1,18 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/left_bar' %></div>
+  <div class="col-md-9">
+    <% @device_attaches.each_with_index do |device_attach, index| %>
+      <div class="d-flex justify-content-between">
+        <div>
+          照片<%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>
+        </div>
+        <div>
+          <%= link_to "查看照片", "#", class: "badge badge-primary" %>
+          <%= link_to '删除', url_for([@device, device_attach]), remote: true, class: "badge badge-primary" %>
+        </div>
+      </div>
+    <% end %> 
+  </div>
+</div>
+<%= render 'shared/confirm_modal' %>

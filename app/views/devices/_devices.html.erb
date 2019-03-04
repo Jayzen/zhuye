@@ -12,7 +12,6 @@
       </div>
       <div>
         <%= link_to "查看", device_path(device), class: "badge badge-primary" %>
-        <%= link_to "查看照片", lists_devices_path(id: device), class: "badge badge-primary" %>
         <%= link_to '编辑', edit_device_path(device), class: "badge badge-primary" %>
         <%= link_to '删除', delete_device_path(device), remote: true, class: "badge badge-primary" %>
         <%= link_to '查看二维码', rqrcode_device_path(device), class: "badge badge-primary" %>

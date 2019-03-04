@@ -3,7 +3,7 @@ class DevicesController < ApplicationController
   before_action :set_device, only: [:rqrcode, :show, :edit, :update, :destroy, :delete, :set_weight, :set_reveal]
   before_action :set_devices, only: [:index, :set_weight, :set_reveal]
   before_action :set_left_bar, except: [:public_show]
-  before_action :set_categories, only: [:new, :edit]
+  before_action :set_categories, only: [:new, :edit, :create, :update]
   #access device: :all, message: "当前用户无权访问"
 
   def public_show

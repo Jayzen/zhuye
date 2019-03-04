@@ -1,1 +1,4 @@
-<%= @device.name %>
+设备名称: <%= @device.name %><br>
+设备详情: <%= @device.details %><br>
+设备位置：<%= @device.location %><br>
+设备状态：<%= @device.status? ? "正常状态" : "设备维护中" %>

@@ -57,11 +57,23 @@ class DevicesController < ApplicationController
   def create
     @device = current_user.devices.new(device_params)
     if @device.save
-      params[:images].each do |image|
-        @device.device_attaches.create(name: image)
+      if params[:images]
+        @device_error = []
+        params[:images].each do |image|
+          @device_return = @device.device_attaches.create(name: image)
+          @device_error += @device_return.errors.messages.values.flatten
+        end
+        if @device_error.size == 0
+          flash[:success] = "创建成功"
+          redirect_to devices_path
+        else
+          flash[:danger] = @device_error.first
+          redirect_to edit_device_path(@device)
+        end
+      else
+        flash[:success] = "创建成功"
+        redirect_to devices_path
       end
-      flash[:success] = "创建成功"
-      redirect_to devices_path
     else
       render :new
     end
@@ -100,7 +112,7 @@ class DevicesController < ApplicationController
     end
 
     def set_devices
-      @devices = current_user.devices.includes(:category).page(params[:page])
+      @devices = current_user.devices.includes(:category).order(updated_at: :desc).page(params[:page])
     end
 
     def set_left_bar

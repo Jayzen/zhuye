@@ -3,7 +3,8 @@
     <div class="d-flex justify-content-between">
       <div>
         <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
-        <%= category.name %>
+        <%= category.name %>|
+        <%= category.devices_count%>条记录
         <% if @categories.first == category %>
           <span class="badge badge-danger">已置顶</span>
         <% end -%>

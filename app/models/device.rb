@@ -1,6 +1,6 @@
 class Device < ApplicationRecord
   belongs_to :user, optional: true
-  belongs_to :category, optional: true
+  belongs_to :category, optional: true, counter_cache: true
   has_many :device_attaches, dependent: :destroy
   default_scope { order("weight desc") }
 

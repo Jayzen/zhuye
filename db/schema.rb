@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_105764) do
     t.datetime "weight"
     t.boolean "reveal", default: false
     t.integer "user_id"
+    t.integer "devices_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_categories_on_user_id"

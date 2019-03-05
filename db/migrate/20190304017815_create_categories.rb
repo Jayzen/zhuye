@@ -5,6 +5,7 @@ class CreateCategories < ActiveRecord::Migration[5.2]
       t.datetime :weight
       t.boolean :reveal, default: false
       t.integer :user_id
+      t.integer :devices_count, default: 0
 
       t.timestamps
     end

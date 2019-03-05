@@ -53,11 +53,9 @@ Rails.application.routes.draw do
     get 'rqrcode', on: :member
     get 'delete', on: :member
     get 'public_show', on: :member
-    get 'lists', on: :collection
-  end
-
-  resources :device_attaches do
-    get 'delete', on: :member
+    resources :device_attaches do
+      get 'delete', on: :member
+    end
   end
 
   resources :feedbacks do

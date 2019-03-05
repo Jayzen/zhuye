@@ -4,7 +4,7 @@
       <% if ( current_user.basic && current_user.basic.is_name? ) %>
         <%= link_to current_user.basic.name, root_path, class: "navbar-brand" %>
       <% end -%>
-      <% if ( current_user.basic && current_user.basic.is_logo?) %>
+      <% if ( current_user.basic && current_user.basic.is_logo? && (current_user.basic.logo.size != 0)) %>
         <%= image_tag current_user.basic.logo_url, height: "50", class: "rounded"%>
       <% end -%>
     <% else %>

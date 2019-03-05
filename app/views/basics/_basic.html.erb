@@ -20,7 +20,7 @@
       <div class="d-flex flex-row">
         <div class="item-hl">
           <a href="#", class="btn btn-sm text-secondary", id="button_trigger" >
-            <i class="fa fa-upload fa-fw"></i><%= @basic.new_record? ? "未上传, 点击上传logo" : "已上传, 点击更新logo" %>
+            <i class="fa fa-upload fa-fw"></i><%= (@basic.logo.size == 0) ? "未上传, 点击上传logo" : "已上传, 点击更新logo" %>
           </a>
         </div>
         <div class="item-hl">

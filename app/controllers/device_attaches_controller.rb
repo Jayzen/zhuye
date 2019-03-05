@@ -18,11 +18,18 @@ class DeviceAttachesController < ApplicationController
 
   def create
     if params[:images]
+      @device_error = []
       params[:images].each do |image|
-        @device.device_attaches.create(name: image)
+        @device_return = @device.device_attaches.create(name: image)
+        @device_error += @device_return.errors.messages.values.flatten
       end
-      flash[:success] = "创建成功"
-      redirect_to device_device_attaches_path(@device)
+      if @device_error.size == 0
+        flash[:success] = "上传成功"
+        redirect_to device_device_attaches_path(@device)
+      else
+        flash[:danger] = @device_error.first
+        redirect_to device_device_attaches_path(@device)
+      end
     else
       flash[:danger] = "不能上传空文件"
       redirect_to device_device_attaches_path(@device)

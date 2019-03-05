@@ -1,0 +1,13 @@
+<div>
+  <% @devices.each_with_index do |device, index| %>
+    <div class="d-flex justify-content-between">
+      <div>
+        <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+        <%= device.name %>
+      </div>
+      <div>
+        <%= link_to '查看', device_path(device), class: "badge badge-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

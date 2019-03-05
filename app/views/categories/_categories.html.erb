@@ -19,6 +19,7 @@
         <% end -%> 
         <%= link_to '编辑', edit_category_path(category), class: "badge badge-primary" %>
         <%= link_to '删除', delete_category_path(category), remote: true, class: "badge badge-primary" %>
+        <%= link_to '查看', category_path(category), class: "badge badge-primary" %>
         <%= link_to category.reveal? ? "隐藏" : "显示", set_reveal_category_path(category), remote: true, class: "badge badge-primary" %>
       </div>
     </div>

@@ -27,6 +27,8 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
+    @category = current_user.categories.find(params[:id])
+    @devices = @category.devices.page(params[:page])
   end
 
   # GET /categories/new

@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     get 'public_show', on: :member
     resources :device_attaches do
       get 'delete', on: :member
+      get 'delete_all', on: :collection
     end
   end
 

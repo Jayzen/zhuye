@@ -55,7 +55,7 @@ class DevicesController < ApplicationController
 
   # POST /devices
   def create
-    @device = current_user.devices.new(device_params)
+    @device = current_user.devices.build(device_params)
     if @device.save
       if params[:images]
         @device_error = []
@@ -82,11 +82,26 @@ class DevicesController < ApplicationController
   # PATCH/PUT /devices/1
   def update
     if @device.update(device_params)
-      flash[:success] = "更新成功"
-      redirect_to devices_path
+      if params[:images]
+        @device_error = []
+        params[:images].each do |image|
+          @device_return = @device.device_attaches.create(name: image)
+          @device_error += @device_return.errors.messages.values.flatten
+        end
+        if @device_error.size == 0
+          flash[:success] = "更新成功"
+          redirect_to devices_path
+        else
+          flash[:danger] = @device_error.first
+          redirect_to edit_device_path(@device)
+        end
+      else
+        flash[:success] = "更新成功"
+        redirect_to devices_path
+      end
     else
       render :edit
-    end
+    end 
   end
 
 

@@ -15,7 +15,8 @@
     <% end %>
     <div class="d-flex flex-row mt-2">
       <div class="mr-2"><%= link_to "返回", devices_path, class: "btn btn-primary" %></div>
-      <div><%= link_to "新建", new_device_device_attach_path(@device, @device_attach), class: "btn btn-primary" %></div>
+      <div class="mr-2"><%= link_to "新建", new_device_device_attach_path(@device, @device_attach), class: "btn btn-primary" %></div>
+      <div><%= link_to "删除全部照片", delete_all_device_device_attaches_path(@device), class: "btn btn-primary" %></div>
     </div>
   </div>
 </div>

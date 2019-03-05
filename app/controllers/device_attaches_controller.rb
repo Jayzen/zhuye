@@ -46,6 +46,13 @@ class DeviceAttachesController < ApplicationController
     redirect_to device_device_attaches_path(@device)
   end
 
+  def delete_all
+    @device = current_user.devices.find(params[:device_id])
+    @device.device_attaches.destroy_all
+    flash[:success] = "删除成功"
+    redirect_to devices_path
+  end
+
   private
     def device_attach_params
       params.require(:device_attach).permit(:name)

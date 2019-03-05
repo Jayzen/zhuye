@@ -1,4 +1,14 @@
 <%= form_for(@basic, url: basic_path(@basic), method: :put) do |f| %>
+  <% unless @basic.errors.blank? %>
+    <div class="alert alert-danger">
+      <ul class="list-unstyled">
+        <% @basic.errors.messages.values.flatten.each do |error| %>
+          <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+        <% end -%>
+      </ul>
+    </div>
+  <% end -%> 
+
   <div class="form-group">
     <%= f.text_field :name, placeholder: "输入网站名称", class: "form-control" %>
   </div>

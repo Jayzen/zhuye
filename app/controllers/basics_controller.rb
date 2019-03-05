@@ -8,9 +8,12 @@ class BasicsController < ApplicationController
 
   def update
     @basic = current_user.basic
-    @basic.update_attributes(basic_params)
-    flash[:success] = "更新成功"
-    redirect_to basics_path
+    if @basic.update_attributes(basic_params)
+      flash[:success] = "更新成功"
+      redirect_to basics_path
+    else 
+      render 'index'
+    end
   end
  
   private

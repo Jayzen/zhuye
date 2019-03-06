@@ -4,7 +4,7 @@
   <div class="col-md-9">
     <div class="d-flex justify-content-center">
       <div>
-        <%= raw @qr.as_html %>
+        <%= image_tag @device.qr_code.url %>
       </div>
     </div>
   </div>

@@ -13,7 +13,8 @@ class DevicesController < ApplicationController
   end
 
   def rqrcode
-    @qr = RQRCode::QRCode.new(public_show_device_url(@device), :size => 6, :level => :h )
+    qr_code_img = RQRCode::QRCode.new(public_show_device_url(@device), :size => 40, :level => :h ).to_img
+    @device.update_attribute :qr_code, qr_code_img.to_string
   end
 
   def lists
@@ -125,7 +126,7 @@ class DevicesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def device_params
-      params.require(:device).permit(:name, :details, :category_id, :location, :status)
+      params.require(:device).permit(:qr_code, :name, :details, :category_id, :location, :status)
     end
 
     def set_devices

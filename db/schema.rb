@@ -115,6 +115,8 @@ ActiveRecord::Schema.define(version: 2019_12_06_105764) do
     t.boolean "reveal", default: false
     t.integer "user_id"
     t.integer "category_id"
+    t.string "qr_code_uid"
+    t.string "qr_code_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_devices_on_category_id"

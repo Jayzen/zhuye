@@ -52,10 +52,10 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    archive-zip (0.11.0)
+    archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
-    autoprefixer-rails (9.4.9)
+    autoprefixer-rails (9.4.10)
       execjs
     aws_cf_signer (0.1.3)
     bcrypt (3.1.12)
@@ -111,6 +111,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    dragonfly (1.2.0)
+      addressable (~> 2.3)
+      multi_json (~> 1.0)
+      rack (>= 1.3)
     erubi (1.8.0)
     execjs (2.7.0)
     faker (1.9.3)
@@ -125,7 +129,7 @@ GEM
     httparty (0.16.4)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
-    i18n (1.5.3)
+    i18n (1.6.0)
       concurrent-ruby (~> 1.0)
     io-like (0.3.0)
     jbuilder (2.8.0)
@@ -178,7 +182,7 @@ GEM
       momentjs-rails (>= 2.10.5, <= 3.0.0)
     momentjs-rails (2.20.1)
       railties (>= 3.1)
-    msgpack (1.2.6)
+    msgpack (1.2.7)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     mysql2 (0.5.2)
@@ -236,6 +240,9 @@ GEM
       netrc (~> 0.8)
     rqrcode (0.10.1)
       chunky_png (~> 1.0)
+    rqrcode_png (0.1.5)
+      chunky_png
+      rqrcode
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sass (3.7.3)
@@ -305,11 +312,13 @@ DEPENDENCIES
   capybara (>= 2.15)
   carrierwave
   chromedriver-helper
+  chunky_png
   cloudinary
   coderay
   coffee-rails (~> 4.2)
   devise
   devise-bootstrapped!
+  dragonfly (~> 1.2.0)
   faker
   font-awesome-rails
   httparty
@@ -328,7 +337,7 @@ DEPENDENCIES
   rack-mini-profiler
   rails (~> 5.2.2)
   redcarpet
-  rqrcode
+  rqrcode_png
   sass-rails (~> 5.0)
   selenium-webdriver
   simplemde-rails

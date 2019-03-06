@@ -13,14 +13,21 @@
          <i class="fa fa-comments fa-lg"></i> <%= @device.details %>
        </div>
      </div>
-     <div class="wrapper">
-       <div class="box_wrapper">
-         <% @device_attaches.each do |attach| %>
-           <div class="content_item">
-             <%= image_tag attach.name_url, class: "d-block w-100" %>
-           </div>
-         <% end -%> 
+     <% unless @device_attaches.size == 0 %>
+       <div class="wrapper">
+         <div class="box_wrapper">
+           <% @device_attaches.each do |attach| %>
+             <div class="content_item">
+               <%= image_tag attach.name_url, class: "d-block w-100" %>
+             </div>
+           <% end -%> 
+         </div>
        </div>
-     </div>  
+     <% end -%>
+     <% unless @device_attaches.size == 0 %>
+       <div class="small text-center text-secondary">
+         <i class="fa fa-arrow-left fa-fw"></i>左右滑动可以查看更多图片<i class="fa fa-arrow-right fa-fw"></i>
+       </div>
+     <% end %>
    </div>
 </div>

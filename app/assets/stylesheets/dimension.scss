@@ -3,111 +3,27 @@
 */
 @import "bootstrap";
 @import "font-awesome";
-@import "simplemde.min";
 
 body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 
-a:hover { text-decoration:none;}
-
-#picture img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.wrapper{
+  width:100%;
+  margin:0 auto;
+  overflow:hidden;
+  overflow-wrap: break-word;
 }
 
-#custom-search-input{
-    padding: 3px;
-    border: solid 1px #E4E4E4;
-    border-radius: 6px;
-    background-color: #fff;
+.box_wrapper{
+  overflow-x:scroll;
+  overflow-wrap: break-word;
+  white-space:nowrap;
+  font-size:0;
 }
 
-#custom-search-input input{
-    border: 0;
-    box-shadow: none;
+.content_item{
+  display:inline-block;
+  margin:10px 5px;
+  width:100%;
+  background:#ddd;
+  border:1px solid #000;
 }
-
-#custom-search-input button{
-    margin: 2px 0 0 0;
-    background: none;
-    box-shadow: none;
-    border: 0;
-    color: #666666;
-    padding: 0 8px 0 10px;
-    border-left: solid 1px #ccc;
-}
-
-#custom-search-input button:hover{
-    border: 0;
-    box-shadow: none;
-    border-left: solid 1px #ccc;
-}
-
-#employees img {
-    margin-top: -50px; }
-
-#employees .card:hover {
-    background: #3292a6;
-    color: #fff; }
-
-#employees .card:hover .fa {
-    color: #fff; }
-
-.nav-scroller {
-  position: relative;
-  z-index: 2;
-  height: 2.75rem;
-  overflow-y: hidden;
-}
-
-.nav-scroller .nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  padding-bottom: 1rem;
-  margin-top: -1px;
-  overflow-x: auto;
-  color: rgba(255, 255, 255, .75);
-  text-align: center;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-
-.nav-underline .nav-link {
-  padding-top: .75rem;
-  padding-bottom: .75rem;
-  padding-left: 0;
-  font-size: .875rem;
-  color: var(--secondary);
-}
-
-.nav-underline .nav-link:hover {
-  color: var(--blue);
-}
-
-.nav-underline .active {
-  font-weight: 500;
-  color: var(--gray-dark);
-}
-
-.box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-table {
-  border-width: 0;
-  border-style: none;
-  border-color: #0000ff;
-  border-collapse: collapse;
-}
-
-td {
-  border-left: solid 10px #000;
-  padding: 0; 
-  margin: 0; 
-  width: 0px; 
-  height: 10px; 
-}
-
-td.black { border-color: #000; }
-td.white { border-color: #fff; }

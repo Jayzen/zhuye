@@ -13,7 +13,7 @@ class DevicesController < ApplicationController
   end
 
   def rqrcode
-    qr_code_img = RQRCode::QRCode.new(public_show_device_url(@device), :size => 40, :level => :h ).to_img
+    qr_code_img = RQRCode::QRCode.new(public_show_device_url(@device), :size => 14, :level => :h ).to_img
     @device.update_attribute :qr_code, qr_code_img.to_string
   end
 

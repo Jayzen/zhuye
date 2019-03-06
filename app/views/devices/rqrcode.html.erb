@@ -2,10 +2,11 @@
 <div class="row">
   <div class="col-md-3"><%= render 'shared/left_bar' %></div>
   <div class="col-md-9">
-    <div class="d-flex justify-content-center">
-      <div>
-        <%= image_tag @device.qr_code.url %>
-      </div>
+    <div><%= image_tag @device.qr_code.url, size: "150x150", alt: "二维码" %></div>
+    <div class="d-flex flex-row">
+      <%= link_to @device.qr_code.url, class: "btn btn-primary mr-2 ml-3", download: "xxx" do %>
+        下载<i class="fa fa-download fa-fw"></i>
+      <% end -%> 
     </div>
   </div>
 </div>

@@ -111,3 +111,23 @@ td {
 
 td.black { border-color: #000; }
 td.white { border-color: #fff; }
+
+.wrapper{
+      width:100%;
+      margin:0 auto;
+      overflow:hidden;
+      overflow-wrap: break-word;
+    }
+    .box_wrapper{
+      overflow-x:scroll;
+      overflow-wrap: break-word;
+      white-space:nowrap;
+      font-size:0;
+    }
+    .content_item{
+      display:inline-block;
+      margin:10px 5px;
+      width:100%;
+      background:#ddd;
+      border:1px solid #000;
+    }

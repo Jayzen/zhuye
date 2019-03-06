@@ -8,6 +8,7 @@ class DevicesController < ApplicationController
 
   def public_show
     @device = Device.find(params[:id])
+    @device_attaches = @device.device_attaches
   end
 
   def rqrcode

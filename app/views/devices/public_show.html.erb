@@ -2,14 +2,20 @@
    <div class="card-header text-secondary text-center"><%= @device.name %></div>
    <div class="card-body">
      <div class="text-secondary">
-       设备名称: <%= @device.name %><br>
-       设备详情: <%= @device.details %><br>
-       设备位置：<%= @device.location %><br>
-       设备状态：<%= @device.status? ? "正常状态" : "设备维护中" %>
+       <i class="fa fa-tag fa-lg"></i> <%= @device.category.name %><br>
+       <i class="fa fa-map-marker fa-lg"></i> <%= @device.location %><br>
+       <% if @device.status? %>
+         <i class="fa fa-check fa-lg"></i> 正常状态<br>
+       <% else %>
+         <i class="fa fa-exclamation fa-lg"></i> 设备维护中
+       <% end -%>
+       <div>
+         <i class="fa fa-comments fa-lg"></i> <%= @device.details %>
+       </div>
      </div>
      <div class="wrapper">
        <div class="box_wrapper">
-         <% @device.device_attaches.each do |attach| %>
+         <% @device_attaches.each do |attach| %>
            <div class="content_item">
              <%= image_tag attach.name_url, class: "d-block w-100" %>
            </div>

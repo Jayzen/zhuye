@@ -5,6 +5,7 @@
     <% @device_attaches.each_with_index do |device_attach, index| %>
       <div class="d-flex justify-content-between">
         <div>
+          <%= check_box_tag "[device_attach_ids][]", device_attach.id %>
           <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
           <%= image_tag device_attach.name.url, height: '50' %>
         </div>

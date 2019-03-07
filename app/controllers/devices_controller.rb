@@ -13,18 +13,35 @@ class DevicesController < ApplicationController
   end
 
   def rqrcode
-    qr_code_img = RQRCode::QRCode.new(public_show_device_url(@device))
-    png = qr_code_img.as_png(
+    qr_image = RQRCode::QRCode.new(public_show_device_url(@device))
+    qr_image = qr_image.as_png(
       resize_gte_to: false,
       resize_exactly_to: false,
       fill: 'white',
-      color: 'black',
+      color: '0000FF',
       size: 300,
       border_modules: 4,
       module_px_size: 6,
       file: nil # path to write
     )
-    @device.update_attribute :qr_code, png.to_s
+   
+    logo = ChunkyPNG::Image.from_file(Rails.root.to_s+"/public"+current_user.basic.logo.url)
+
+    transparent = ::ChunkyPNG::Color::TRANSPARENT
+    #qr_image = qr_code_img.as_png(fill: transparent, module_px_size: 24)
+    #height = (logo.dimension.height / 2).floor - (qr_image.dimension.height / 2).floor
+    #width  = (logo.dimension.width  / 2).floor - (qr_image.dimension.width  / 2).floor
+
+    #qr_composed = logo.compose(png, width, height)
+    #qr_composed.save("qr_composed.png") 
+
+    new_width  = logo.dimension.width + qr_image.dimension.width
+    qr_merged_horizontally = ChunkyPNG::Image.new(new_width, logo.dimension.height, ::ChunkyPNG::Color::WHITE)
+    qr_merged_horizontally.compose!(logo, 0, 0)
+    qr_merged_horizontally.compose!(qr_image, logo.dimension.width)
+    qr_merged_horizontally.save("qr_merged_horizontally.png")    
+
+    @device.update_attribute :qr_code, qr_merged_horizontally.to_s
   end
 
   def lists

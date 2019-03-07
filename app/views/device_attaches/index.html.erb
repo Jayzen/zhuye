@@ -5,7 +5,8 @@
     <% @device_attaches.each_with_index do |device_attach, index| %>
       <div class="d-flex justify-content-between">
         <div>
-          照片<%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>
+          <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
+          <%= image_tag device_attach.name.url, height: '50' %>
         </div>
         <div>
           <%= link_to "查看", device_device_attach_path(@device, device_attach), class: "badge badge-primary" %>

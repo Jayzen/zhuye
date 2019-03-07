@@ -9,6 +9,7 @@ class CreateDevices < ActiveRecord::Migration[5.2]
       t.boolean :reveal, default: false
       t.integer :user_id
       t.integer :category_id
+      t.string :qr_code
       t.string :qr_code_uid
       t.string :qr_code_name
 

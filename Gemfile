@@ -16,7 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 #two dimension
 gem 'dragonfly', '~> 1.2.0'
 gem 'rqrcode_png'
-gem 'chunky_png'
+#gem 'rqrcode_png'
+#gem 'chunky_png'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

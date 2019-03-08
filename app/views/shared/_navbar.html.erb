@@ -4,15 +4,15 @@
       <% if ( current_user.basic && current_user.basic.is_name? ) %>
         <%= link_to current_user.basic.name, root_path, class: "navbar-brand" %>
       <% end -%>
-      <% if ( current_user.basic && current_user.basic.is_logo? && (current_user.basic.logo.size != 0)) %>
-        <%= image_tag current_user.basic.logo_url, height: "50", class: "rounded"%>
+      <% if ( current_user.trademark && current_user.trademark.reveal? && (current_user.trademark.name.size != 0)) %>
+        <%= image_tag current_user.trademark.name.url(:large), height: "50", class: "rounded"%>
       <% end -%>
     <% else %>
       <% if ( @user && @user.basic && @user.basic.is_name? ) %>
         <%= link_to @user.basic.name, root_path, class: "navbar-brand" %>
       <% end -%>
-      <% if ( @user && @user.basic && @user.basic.is_logo?) %>
-        <%= image_tag @user.basic.logo_url, height: "50", class: "rounded"%>
+      <% if ( @user && @user.trademark && @user.trademark.reveal? && (@user.trademark.name.size != 0)) %>
+        <%= image_tag @user.trademark.name.url(:large), height: "50", class: "rounded"%>
       <% end -%>
     <% end -%>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>

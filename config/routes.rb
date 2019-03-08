@@ -104,5 +104,7 @@ Rails.application.routes.draw do
   resources :pictures, only: [:create]
   get 'kind/:id', to: "welcomes#kind", as: :kind
   resources :logos
-  resources :trademarks
+  resources :trademarks do
+    get 'reveal', on: :member
+  end
 end

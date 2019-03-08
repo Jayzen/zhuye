@@ -31,6 +31,12 @@ class TrademarksController < ApplicationController
     end
   end
  
+  def reveal
+    @trademark = current_user.trademark
+    @trademark.toggle!(:reveal)
+    flash[:success] = "设置成功"
+    redirect_to new_trademark_path
+  end
 
   private
     def trademark_params

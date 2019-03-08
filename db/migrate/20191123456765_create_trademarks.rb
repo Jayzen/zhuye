@@ -3,6 +3,7 @@ class CreateTrademarks < ActiveRecord::Migration[5.2]
     create_table :trademarks do |t|
       t.string :name
       t.integer :user_id
+      t.boolean :reveal, default: false
 
       t.timestamps
     end

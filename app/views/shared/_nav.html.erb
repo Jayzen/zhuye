@@ -3,7 +3,7 @@
     <%= link_to "显示设置", options_path, class: "nav-link #{ ( (controller_name =='options') && (action_name == 'index')) ? 'actived' : 'disabled' }" %>
   </li>
   <li class="nav-item">
-    <%= link_to "内容设置", basics_path, class: "nav-link #{ ((controller_name != 'options') && (controller_name !='set_advertises') && (controller_name !='logos')) ? 'actived' : 'disabled' }" %>
+    <%= link_to "内容设置", basics_path, class: "nav-link #{ ((controller_name != 'options') && (controller_name !='set_advertises') && (controller_name !='logos') && (controller_name !='set_dimensions') ) ? 'actived' : 'disabled' }" %>
   </li> 
   <% if current_user.option != "dimension"%>
     <li class="nav-item">
@@ -20,7 +20,7 @@
     </li>
   <% else current_user.option == "dimension" %>
     <li class="nav-item">
-      <%= link_to "样式设置", new_logo_path, class: "nav-link #{ (controller_name == 'logos') ? 'actived' : 'disabled' }" %>
+      <%= link_to "样式设置", new_logo_path, class: "nav-link #{ ((controller_name == 'logos') || (controller_name == 'set_dimensions')) ? 'actived' : 'disabled' }" %>
     </li>
   <% end -%>
 </ul>

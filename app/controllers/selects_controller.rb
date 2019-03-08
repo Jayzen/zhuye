@@ -29,6 +29,7 @@ class SelectsController < ApplicationController
     current_user.roles = ["category", "device"]
     current_user.save
     create_options
+    create_set_dimension
     redirect_to options_path
   end 
 
@@ -59,5 +60,9 @@ class SelectsController < ApplicationController
 
     def create_set_advertise
       current_user.create_set_advertise(contact: "", map_height: 200)
+    end
+
+    def create_set_dimension
+      current_user.create_set_dimension(logo: "")
     end
 end

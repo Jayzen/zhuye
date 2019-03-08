@@ -84,6 +84,11 @@ Rails.application.routes.draw do
     put 'set_map_height', on: :collection
   end
 
+  resources :set_dimensions do
+    get 'logo', on: :collection
+    put 'set_logo', on: :collection
+  end
+
   resources :maps do
     get 'delete', on: :member
     get 'set_weight', on: :member

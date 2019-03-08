@@ -1,0 +1,39 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/dimension_style_left_bar' %></div>
+  <div class="card col-md-9">
+    <div class="card-body">
+      <%= form_for(@set_dimension, url: set_logo_set_dimensions_path(@set_dimension), method: :put ) do |f| %>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="set_dimension[logo]"  value=""  <%= @set_dimension.logo == "" ? "checked" : ""%>>
+            <label class="form-check-label text-secondary">
+              不显示
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="set_dimension[logo]"  value="inline" <%= @set_dimension.logo == "inline" ? "checked" : ""%>>
+            <label class="form-check-label text-secondary">
+              logo内嵌
+            </label>
+          </div> 
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="set_dimension[logo]"  value="horizontally" <%= @set_dimension.logo == "horizontally" ? "checked" : ""%>>
+            <label class="form-check-label text-secondary">
+              左右排列
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="set_dimension[logo]"  value="vertically" <%= @set_dimension.logo == "vertically" ? "checked" : ""%>>
+            <label class="form-check-label text-secondary">
+              上下排列
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.submit "更新logo显示位置", class: "btn btn-primary"%>
+        </div>
+      <% end -%> 
+    </div>
+  </div>
+</div>

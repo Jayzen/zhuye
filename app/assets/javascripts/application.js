@@ -5,7 +5,6 @@
 //= require popper
 //= require bootstrap
 //= require jcrop
-//= require avatar
 //= require jquery-ui/core
 //= require jquery-ui/widgets/sortable
 //= require html.sortable

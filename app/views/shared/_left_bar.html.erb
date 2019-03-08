@@ -6,6 +6,11 @@
           <button type="button" class="btn <%= (controller_name == 'basics') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">推广设置</button>
         </a>
       </div> 
+      <div class="mt-2">
+        <a href="<%= new_trademark_path %>">
+          <button type="button" class="btn <%= (controller_name == 'trademarks') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">Logo设置</button>
+        </a>
+      </div>
       <% @options.pluck(:name, :show).map{|option| [option[0]+"s", option[1]]}.each do |option| %>
         <div class="mt-2">
           <% if option.first == "categorys" %>

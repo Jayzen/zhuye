@@ -25,6 +25,7 @@ class User < ApplicationRecord
   has_many :photographs, dependent: :destroy
   has_one :basic, dependent: :destroy
   has_one :set_advertise, dependent: :destroy
+  has_one :logo, dependent: :destroy
   has_many :contacts, dependent: :destroy
   has_many :introductions, dependent: :destroy
   has_many :articles, dependent: :destroy

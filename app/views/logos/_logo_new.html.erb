@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header text-center">
+        <%= @logo.new_record? ? "Logo新建" : "Logo修改" %>
+      </div>
+      <div class="card-body">
+        <%= form_for(@logo, url: logos_path, method: :post) do |f| %>
+          <% unless @logo.errors.blank? %>
+            <div class="alert alert-danger">
+              <ul class="list-unstyled">
+                <% @logo.errors.messages.values.flatten.each do |error| %>
+                  <li><i class="fa fa-exclamation-circle"></i> <%= error %></li>
+                <% end -%>
+              </ul>
+            </div>
+          <% end -%>
+          <%= hidden_field_tag "logo[not_nil]", true %>
+          <div class="form-group">
+            <%= f.file_field :name %>
+          </div>
+          <div class="form-group">
+            <%= f.submit "#{@logo.new_record? ? '新建' : '修改'}", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class='col-md-4'>
+    <div class="card">
+      <div class="card-header text-center">
+        Logo预览
+      </div>
+      <div class="card-body text-center">
+        <% if @logo.name.size != 0 %>
+          <%= image_tag @logo.name.url(:large), size: "100x100" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

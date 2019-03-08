@@ -15,4 +15,3 @@ encoded_uri = URI::encode(uri)
 response = open(encoded_uri).read
 decode_response =  ActiveSupport::JSON.decode(response)
 p decode_response
-rails s

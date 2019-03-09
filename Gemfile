@@ -48,6 +48,7 @@ gem 'mysql2'
 gem 'mini_racer'
 gem 'bootstrap4-datetime-picker-rails'
 gem 'faker'
+gem 'dropzonejs-rails'
 #translation
 gem 'httparty'
 gem 'jquery-ui-rails'

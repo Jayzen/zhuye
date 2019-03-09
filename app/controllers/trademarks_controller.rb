@@ -11,13 +11,17 @@ class TrademarksController < ApplicationController
   end
 
   def create
-    @trademark = current_user.build_trademark(trademark_params)
+    @trademark = current_user.build_trademark(name: params[:name]["0"])
     if @trademark.save
       flash[:success] = "头像上传成功!"
-      render :crop
+      redirect_to crop_trademark_path(@trademark)
     else
       render :new
     end
+  end
+
+  def crop
+    @trademark = current_user.trademark
   end
 
   def update

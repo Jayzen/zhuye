@@ -106,5 +106,6 @@ Rails.application.routes.draw do
   resources :logos
   resources :trademarks do
     get 'reveal', on: :member
+    get 'crop', on: :member
   end
 end

@@ -5,6 +5,7 @@
 @import "font-awesome";
 @import "jcrop";
 @import "simplemde.min";
+@import "dropzone/dropzone";
 
 body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;}
 
@@ -94,3 +95,71 @@ a:hover { text-decoration:none;}
 }
 
 .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+// Customize upload photos form
+.core-sprite {
+  background-image: image-url("core-sprite-2x.png");
+  background-size: 405px 379px;
+  background-repeat: no-repeat;
+}
+
+.hide-text {
+  display: block;
+  overflow: hidden;
+  text-indent: 110%;
+  white-space: nowrap;
+}
+
+.upload-photos-icon:hover {
+  cursor: pointer;
+}
+
+.dz-preview.dz-image-preview {
+  margin: 2px;
+}
+
+.dz-image {
+  border-radius: 0px !important;
+
+  img {
+    width: 100%;
+  }
+}
+
+.dz-remove {
+  @extend .core-sprite;
+  @extend .hide-text;
+  position: absolute;
+  top: 9px;
+  right: 5px;
+  z-index: 20;
+  width: 18px;
+  height: 18px;
+  background-position: -386px -25px;
+  opacity: 0;
+  -webkit-transition: opacity 0.2s liner;
+  transition: opacity 0.2s liner;
+}
+
+.dropzone .dz-preview:hover .dz-remove {
+  opacity: 1;
+}
+
+.upload-photos-icon {
+  height: 120px;
+  width: 120px;
+  border: 2px dashed #dddfe2;
+  border-radius: 2px;
+  padding: 48px;
+  display: inline-block;
+  margin: 2px;
+}
+
+.no-text-decoration:hover {
+  text-decoration: none;
+  color: #262626;
+}
+
+.normal-color {
+  color: #262626;
+}

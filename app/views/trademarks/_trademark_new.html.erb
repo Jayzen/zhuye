@@ -5,7 +5,7 @@
         <%= @trademark.new_record? ? "Logo新建" : "Logo修改" %>
       </div>
       <div class="card-body">
-        <%= form_for(@trademark, url: trademarks_path, method: :post) do |f| %>
+        <%= form_for(@trademark, url: trademarks_path, method: :post, :html => {:multipart => true, :class => "dropzone upload-images p-0 border-0"}) do |f| %>
           <% unless @trademark.errors.blank? %>
             <div class="alert alert-danger">
               <ul class="list-unstyled">
@@ -15,10 +15,16 @@
               </ul>
             </div>
           <% end -%>
-          <%= hidden_field_tag "trademark[not_nil]", true %>
-          <div class="form-group">
-            <%= f.file_field :name %>
+          <div class="fallback">
+            <%= f.file_field :name, type: :file %>
           </div>
+          <div class="dz-message m-0"></div>
+          <div class="dropzone-previews mb-3">
+            <div class="upload-photos-icon">
+              <i class="fa fa-plus fa-2x" aria-hidden="true" style="color:#dddfe2"></i>
+            </div>
+          </div>
+
           <div class="form-group row">
             <div class="ml-3">
               <%= f.submit "#{@trademark.new_record? ? '新建' : '修改'}", class: "btn btn-primary" %>
@@ -47,3 +53,39 @@
     </div>
   </div>
 </div>
+
+<%= content_for :javascripts do %>
+  <script>
+    Dropzone.autoDiscover = false;
+
+    $(document).ready(function(){
+      $(".upload-images").dropzone({
+        addRemoveLinks: true,
+        maxFilesize: 1,
+        autoProcessQueue: false,
+        uploadMultiple: true,
+        parallelUploads: 100,
+        maxFiles: 100,
+        paramName: "name",
+        previewsContainer: ".dropzone-previews",
+        clickable: ".upload-photos-icon",
+        thumbnailWidth: 100,
+        thumbnailHeight: 100,
+
+        init: function(){
+          var myDropzone = this;
+
+          this.element.querySelector("input[type=submit]").addEventListener("click", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+            myDropzone.processQueue();
+          });
+
+          this.on("successmultiple", function(files, response){
+            window.location.reload();
+          });
+        }
+      })
+    });   
+  </script>
+<% end -%>

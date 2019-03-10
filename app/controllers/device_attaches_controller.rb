@@ -17,6 +17,7 @@ class DeviceAttachesController < ApplicationController
   end
 
   def create
+    debugger
     if params[:images]
       @device_error = []
       params[:images].each do |image|

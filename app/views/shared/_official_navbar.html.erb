@@ -3,8 +3,8 @@
     <% if ( @show_user.basic && @show_user.basic.is_name? ) %>
       <%= link_to @show_user.basic.name, root_path, class: "navbar-brand" %>
     <% end -%>
-    <% if ( @show_user.basic && @show_user.basic.is_logo?) %>
-      <%= image_tag @show_user.basic.logo_url, height: "50", class: "rounded"%>
+    <% if ( @show_user.trademark && @show_user.trademark.reveal? && (@show_user.trademark.name.size != 0)) %>
+      <%= image_tag @user.trademark.name.url(:large), height: "50", class: "rounded"%>
     <% end -%>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="navbarNav">

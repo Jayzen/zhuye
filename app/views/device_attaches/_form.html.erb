@@ -1,4 +1,4 @@
-<%= form_with(model: @device_attach, local: true, html: { multipart: true}, url: device_device_attaches_path, method: :post) do |form| %>
+<%= form_with(model: @device_attach, local: true, :html => {:multipart => true, :class => "dropzone upload-images p-0 border-0"}, url: device_device_attaches_path, method: :post) do |form| %>
   <% unless @device_attach.errors.blank? %>
     <div class="alert alert-danger">
       <ul class="list-unstyled">
@@ -9,11 +9,36 @@
     </div>
   <% end -%>
 
-  <div class="form-group">
+  <div class="fallback">
     <%= file_field_tag "images[]", type: :file, multiple: true %>
+  </div>
+  <div class="dz-message m-0"></div>
+  <div class="dropzone-previews mb-3">
+    <div class="upload-photos-icon">
+      <i class="fa fa-plus fa-2x" aria-hidden="true" style="color:#dddfe2"></i>
+    </div>
   </div>
   
   <div class="form-group">
     <%= form.submit "新建", class: "btn btn-primary" %>
   </div> 
 <% end %>
+
+<%= content_for :javascripts do %>
+  <script>
+    Dropzone.autoDiscover = false;
+
+    $(document).ready(function(){
+      $(".upload-images").dropzone({
+        addRemoveLinks: true,
+        maxFilesize: 2,
+        uploadMultiple: true,
+        paramName: "images[]",
+        previewsContainer: ".dropzone-previews",
+        clickable: ".upload-photos-icon",
+        thumbnailWidth: 100,
+        thumbnailHeight: 100
+      })
+    });
+  </script>
+<% end -%>

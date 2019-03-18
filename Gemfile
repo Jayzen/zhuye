@@ -13,6 +13,13 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+#api
+gem 'grape', '~> 1.0.1'
+gem 'grape-swagger'
+gem 'grape-swagger-rails'
+gem 'grape_on_rails_routes'
+gem 'rack-cors'
+
 #two dimension
 gem 'dragonfly', '~> 1.2.0'
 gem 'rqrcode'

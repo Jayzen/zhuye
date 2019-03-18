@@ -21,5 +21,12 @@ module Advertise
     # the framework and any gems in your application.
     config.time_zone = 'Beijing'
     config.active_record.default_timezone = :local
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => :any #[:get, :post, :options]
+      end
+    end
   end
 end

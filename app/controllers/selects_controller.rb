@@ -18,7 +18,7 @@ class SelectsController < ApplicationController
 
   def official
     current_user.option = "official"
-    current_user.roles = ["introduction", "service", "article", "feedback", "recruit", "carousel", "contact"]
+    current_user.roles = ["map", "introduction", "service", "article", "feedback", "recruit", "carousel", "contact"]
     current_user.save
     create_options
     redirect_to options_path
@@ -52,6 +52,7 @@ class SelectsController < ApplicationController
         current_user.options.create(name: "recruit", show: "招聘信息")
         current_user.options.create(name: "carousel", show: "轮播图管理")
         current_user.options.create(name: "contact", show: "联系方式")
+        current_user.options.create(name: "map", show: "公司地址")
       when 'dimension'
         current_user.options.create(name: "category", show: "分类管理")
         current_user.options.create(name: "device", show: "设备管理")

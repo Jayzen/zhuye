@@ -1,5 +1,5 @@
 #create user
-User.create(email: "demo@demo.com", subdomain: "demo", password: "111111", password_confirmation: "111111", confirmed_at: "2018-12-12",roles: :root_admin, option: "official")
+User.create(email: "demo@demo.com", subdomain: "demo", password: "111111", password_confirmation: "111111", confirmed_at: "2018-12-12",roles: :root_admin)
 User.create(email: "example@example.com", subdomain: "example", password: "111111", password_confirmation: "111111", confirmed_at: "2018-12-12")
 User.create(email: "one@one.com", subdomain: "one", password: "111111", password_confirmation: "111111", confirmed_at: "2018-12-12")
 puts "finish add user demo"

@@ -3,6 +3,7 @@ class CreateLogos < ActiveRecord::Migration[5.2]
     create_table :logos do |t|
       t.string :name
       t.integer :user_id
+      t.boolean :reveal, default: false
 
       t.timestamps
     end

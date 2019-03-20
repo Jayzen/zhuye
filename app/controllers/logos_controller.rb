@@ -32,6 +32,13 @@ class LogosController < ApplicationController
   end
  
 
+  def reveal
+    @logo = current_user.logo
+    @logo.toggle!(:reveal)
+    flash[:success] = "设置成功"
+    redirect_to new_logo_path
+  end 
+
   private
     def logo_params
       params.require(:logo).permit(:name, :crop_x, :crop_y, :crop_w, :crop_h)

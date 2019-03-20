@@ -1,9 +1,0 @@
-<% if @show_user.navbar == "middle" %>
-  <%= render 'shared/official_lists' %>
-<% end -%>
-<% if (@show_user.has_role?(:carousel) && @carousels && @carousel_option) %>
-  <%= render 'shared/carousels' %>
-<% end -%>
-<% if @show_user.navbar == "bottom" %>
-  <%= render 'shared/official_lists' %>
-<% end -%>

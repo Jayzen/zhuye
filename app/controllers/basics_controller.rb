@@ -1,13 +1,12 @@
 class BasicsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_basic
   before_action :set_left_bar
 
   def index
-    @basic = current_user.basic
   end
 
   def update
-    @basic = current_user.basic
     if @basic.update_attributes(basic_params)
       flash[:success] = "更新成功"
       redirect_to basics_path
@@ -15,8 +14,22 @@ class BasicsController < ApplicationController
       render 'index'
     end
   end
- 
+
+  def background
+  end
+
+  def set_background
+    @basic.background = params[:basic][:background]
+    @basic.save
+    flash[:success] = "设置成功"
+    redirect_to background_basics_path
+  end
+
   private
+    def set_basic
+      @basic = current_user.basic
+    end
+
     def basic_params
       params.require(:basic).permit(:name, :keywords, :is_name)
     end

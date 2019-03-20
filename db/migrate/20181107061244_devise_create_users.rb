@@ -33,7 +33,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.datetime :locked_at
 
       t.string :subdomain
-      t.string :option
       t.string :navbar, default: ""
       t.string :map, default: ""
       t.string :style, default: ""

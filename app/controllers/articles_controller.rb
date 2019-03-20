@@ -83,7 +83,7 @@ class ArticlesController < ApplicationController
     end
 
     def set_articles
-      @articles = current_user.articles.joins(:tag).page(params[:page])
+      @articles = current_user.articles.page(params[:page])
     end
 
     def set_left_bar

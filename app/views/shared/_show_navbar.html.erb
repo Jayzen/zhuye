@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-sm navbar-light <%= @background %> <%= @color %> mb-1">
+  <div class="container">
+    <% if ( @show_user.basic && @show_user.basic.is_name? ) %>
+      <%= link_to @show_user.basic.name, root_path, class: "navbar-brand #{@color}" %>
+    <% end -%>
+    <% if ( @show_user.logo && @show_user.logo.reveal? && (@show_user.logo.name.size != 0)) %>
+      <%= image_tag @user.logo.name.url(:large), height: "50", class: "rounded"%>
+    <% end -%>
+    <% if @navbar_position == "" %>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <% @options.each do |option| %>
+            <% unless (option.name == "carousel" || option.name == "contact") %>
+              <li class="nav-item">
+                <%= link_to "#{option.show}", { controller: "welcomes", action: "#{option.name}" }, class: "nav-link #{@color} #{ action_name == option.name ? '' : '' }" %>
+              </li>
+            <% end -%>
+          <% end -%>
+        </ul>
+      </div>
+    <% end -%>
+  </div>
+</nav>

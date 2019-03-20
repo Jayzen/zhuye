@@ -1,9 +1,0 @@
-<div class="row flex-wrap">
-  <% @photographs.each do |photograph| %> 
-    <div class="col-md-4 mb-1">
-      <%= link_to photograph.image_url, data: { toggle: "lightbox", gallery: "img-gallery"} do %>
-        <%= image_tag photograph.image_url, class: "img-fluid rounded" %>
-      <% end -%>
-    </div>
-  <% end -%>
-</div>

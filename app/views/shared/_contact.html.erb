@@ -13,7 +13,7 @@
           <%= image_tag @contact.wechat_url, class: "card-img-top" %>
         <% end -%>
         <% if ((@show_user.map == "left") && @map && (action_name != 'map')) %>
-          <%= render 'shared/official_left_map' %>
+          <%= render 'shared/small_map' %>
         <% end -%>
       </div>
     <% end -%>

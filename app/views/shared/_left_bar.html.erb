@@ -1,47 +1,18 @@
 <div class="card">
   <div class="card-body d-flex flex-column">
-    <% unless current_user.has_role?(:root_admin) %>
+    <div class="mt-2">
+      <a href="<%= basics_path %>">
+        <button type="button" class="btn <%= (controller_name == 'basics') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">推广设置</button>
+      </a>
+    </div> 
+    <div class="mt-2">
+      <a href="<%= new_logo_path %>">
+        <button type="button" class="btn <%= (controller_name == 'logos') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">Logo设置</button>
+      </a>
+    </div>
+    <% @options.pluck(:name, :show).map{|option| [option[0]+"s", option[1]]}.each do |option| %>
       <div class="mt-2">
-        <a href="<%= basics_path %>">
-          <button type="button" class="btn <%= (controller_name == 'basics') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">推广设置</button>
-        </a>
-      </div> 
-      <div class="mt-2">
-        <a href="<%= new_trademark_path %>">
-          <button type="button" class="btn <%= (controller_name == 'trademarks') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">Logo设置</button>
-        </a>
-      </div>
-      <% @options.pluck(:name, :show).map{|option| [option[0]+"s", option[1]]}.each do |option| %>
-        <div class="mt-2">
-          <% if option.first == "categorys" %>
-            <%= link_to "#{option.last}", { controller: "categories", action: "index"}, class: "btn #{(controller_name == "categories") ? 'btn-primary' : 'btn-outline-secondary'} btn-block" %>
-          <% elsif option.first == "devices" %>
-            <%= link_to "#{option.last}", { controller: "devices", action: "index"}, class: "btn #{((controller_name == "device_attaches")||(controller_name == "devices")) ? 'btn-primary' : 'btn-outline-secondary'} btn-block" %>
-          <% else %>
-            <%= link_to "#{option.last}", { controller: "#{option.first}", action: "index"}, class: "btn #{ (controller_name == option.first) ? 'btn-primary' : 'btn-outline-secondary'} btn-block" %>
-          <% end -%>
-        </div>
-      <% end -%>
-    <% else %>
-      <div class="mt-2">
-        <a href="<%= basics_path %>">
-          <button type="button" class="btn <%= (controller_name == 'basics') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">推广设置</button>
-        </a>
-      </div>
-      <div class="mt-2">
-        <a href="<%= tags_path %>">
-          <button type="button" class="btn <%= (controller_name == 'tags') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">分类管理</button>
-        </a>
-      </div> 
-      <div class="mt-2">
-        <a href="<%= carousels_path %>">
-          <button type="button" class="btn <%= (controller_name == 'carousels') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">轮播图管理</button>
-        </a>
-      </div>
-      <div class="mt-2">
-        <a href="<%= articles_path %>">
-          <button type="button" class="btn <%= (controller_name == 'articles') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">文章管理</button>
-        </a>
+        <%= link_to "#{option.last}", { controller: "#{option.first}", action: "index"}, class: "btn #{ (controller_name == option.first) ? 'btn-primary' : 'btn-outline-secondary'} btn-block" %>
       </div>
     <% end -%>
   </div>

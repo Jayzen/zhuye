@@ -13,10 +13,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.2.0/ekko-lightbox.js"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Flmi0HpO3q8WeIPgK46kfm816ETRwGod"></script>
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=Flmi0HpO3q8WeIPgK46kfm816ETRwGod"></script>
   </head>
-  <body>
-    <%= render 'shared/official_navbar' %>
+  <body class="<%= @basic_background %>" >
+    <%= render 'shared/show_navbar' %>
     <%= render 'shared/flash_messages' %>
     <div class="container"><%= yield %></div>
     <%= yield :javascripts %>

@@ -4,15 +4,8 @@
       <% if ( current_user.basic && current_user.basic.is_name? ) %>
         <%= link_to current_user.basic.name, root_path, class: "navbar-brand" %>
       <% end -%>
-      <% if ( current_user.trademark && current_user.trademark.reveal? && (current_user.trademark.name.size != 0)) %>
-        <%= image_tag current_user.trademark.name.url(:large), height: "50", class: "rounded"%>
-      <% end -%>
-    <% else %>
-      <% if ( @user && @user.basic && @user.basic.is_name? ) %>
-        <%= link_to @user.basic.name, root_path, class: "navbar-brand" %>
-      <% end -%>
-      <% if ( @user && @user.trademark && @user.trademark.reveal? && (@user.trademark.name.size != 0)) %>
-        <%= image_tag @user.trademark.name.url(:large), height: "50", class: "rounded"%>
+      <% if ( current_user.logo && current_user.logo.reveal? && (current_user.logo.name.size != 0)) %>
+        <%= image_tag current_user.logo.name.url(:large), height: "50", class: "rounded"%>
       <% end -%>
     <% end -%>
     <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
@@ -24,29 +17,19 @@
                 <%= current_user.email.split("@").first %>
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <% if current_user.option %>
-                  <%= link_to "个人设置", edit_user_registration_path, class: "dropdown-item" %>
-                <% end -%>
+                <%= link_to "个人设置", edit_user_registration_path, class: "dropdown-item" %>
                 <% unless current_user.has_roles?(:root_admin) %>
-                  <% if current_user.option %>
-                    <%= link_to "系统设置", options_path, class: "dropdown-item" %>
-                  <% end -%>
+                  <%= link_to "系统设置", options_path, class: "dropdown-item" %>
                 <% end -%>
                 <% if current_user.has_roles?(:root_admin) %>
                   <%= link_to "用户管理", admins_path, class: "dropdown-item" %>
                   <%= link_to "主页管理", basics_path, class: "dropdown-item" %>
                 <% end -%>
-                <% if current_user.option %>
-                  <div class="dropdown-divider"></div>
+                <div class="dropdown-divider"></div>
+                <% unless current_user.has_roles?(:root_admin) %>
+                  <%= link_to "显示页面", root_url(subdomain: current_user.subdomain), target: "_blank", class: "dropdown-item" %>
+                  <%= link_to "退出", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
                 <% end -%>
-                <% unless current_user.option == "dimension" %>
-                  <% unless current_user.has_roles?(:root_admin) %>
-                    <% if current_user.option %>
-                      <%= link_to "显示页面", root_url(subdomain: current_user.subdomain), target: "_blank", class: "dropdown-item" %>
-                    <% end -%>
-                  <% end -%>
-                <% end -%>
-                <%= link_to "退出", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
               </div>
             </li>
           <% end -%>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_43_125763) do
+ActiveRecord::Schema.define(version: 2019_12_06_105766) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -39,16 +39,15 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
     t.datetime "weight"
     t.boolean "reveal", default: false
     t.integer "user_id"
-    t.integer "tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tag_id"], name: "index_articles_on_tag_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
   create_table "basics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "keywords"
+    t.string "background"
     t.boolean "is_name", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -70,17 +69,6 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
     t.index ["user_id"], name: "index_carousels_on_user_id"
   end
 
-  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "weight"
-    t.boolean "reveal", default: false
-    t.integer "user_id"
-    t.integer "devices_count", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_categories_on_user_id"
-  end
-
   create_table "contacts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "telephone"
     t.string "address"
@@ -94,32 +82,6 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_contacts_on_user_id"
-  end
-
-  create_table "device_attaches", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.integer "device_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["device_id"], name: "index_device_attaches_on_device_id"
-  end
-
-  create_table "devices", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.text "details"
-    t.string "location"
-    t.boolean "status"
-    t.datetime "weight"
-    t.boolean "reveal", default: false
-    t.integer "user_id"
-    t.integer "category_id"
-    t.string "qr_code"
-    t.string "qr_code_uid"
-    t.string "qr_code_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_devices_on_category_id"
-    t.index ["user_id"], name: "index_devices_on_user_id"
   end
 
   create_table "employees", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -159,6 +121,7 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
   create_table "logos", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.integer "user_id"
+    t.boolean "reveal", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_logos_on_user_id"
@@ -174,6 +137,16 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_maps_on_user_id"
+  end
+
+  create_table "navbars", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "position"
+    t.string "color"
+    t.string "background"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_navbars_on_user_id"
   end
 
   create_table "options", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -228,42 +201,6 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
     t.index ["user_id"], name: "index_services_on_user_id"
   end
 
-  create_table "set_advertises", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "contact"
-    t.integer "map_height"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_set_advertises_on_user_id"
-  end
-
-  create_table "set_dimensions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "logo"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_set_dimensions_on_user_id"
-  end
-
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.datetime "weight"
-    t.boolean "reveal", default: false
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_tags_on_user_id"
-  end
-
-  create_table "trademarks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.boolean "reveal", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_trademarks_on_user_id"
-  end
-
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -283,7 +220,6 @@ ActiveRecord::Schema.define(version: 2019_12_43_125763) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.string "subdomain"
-    t.string "option"
     t.string "navbar", default: ""
     t.string "map", default: ""
     t.string "style", default: ""

@@ -1,0 +1,24 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/style_left_bar' %></div>
+  <div class="card col-md-9">
+    <div class="card-body">
+      <%= form_for(@navbar, url: set_background_navbars_path(@navbar), method: :put ) do |f| %>
+        <div class="form-group">
+          <% ["bg-primary", "bg-secondary", "bg-success", "bg-danger", "bg-warning", "bg-info", "bg-light", "bg-dark", "bg-white"].each do |background| %>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="navbar[background]"  value="<%= background %>"  <%= @navbar.background == "#{background}" ? "checked" : ""%>>
+              <label class="form-check-label <%= background %>">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+              </label>
+            </div>
+          <% end -%>
+        </div>
+        <div class="form-group">
+          <%= f.submit "更新样式", class: "btn btn-primary"%>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+  </div>
+</div>

@@ -10,8 +10,6 @@ gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
 
 #api
 gem 'grape', '~> 1.0.1'
@@ -20,11 +18,6 @@ gem 'grape-swagger-rails'
 gem 'grape_on_rails_routes'
 gem 'rack-cors'
 
-#two dimension
-gem 'dragonfly', '~> 1.2.0'
-gem 'rqrcode'
-#gem 'rqrcode_png'
-gem 'chunky_png'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -33,29 +26,19 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
-# Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'petergate'
 gem 'bootstrap', '~> 4.0.0'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'spinjs-rails'
-gem 'devise-bootstrapped', github: 'king601/devise-bootstrapped', branch: 'bootstrap4'
 gem 'momentjs-rails'
 gem "kaminari"
 gem 'mysql2'
 gem 'mini_racer'
-gem 'bootstrap4-datetime-picker-rails'
 gem 'faker'
-gem 'dropzonejs-rails'
+
 #translation
 gem 'httparty'
 gem 'jquery-ui-rails'
@@ -70,9 +53,6 @@ gem 'mini_magick'
 gem 'simplemde-rails'
 gem 'redcarpet'
 gem 'coderay'
-
-gem 'cloudinary', require: false
-gem 'activestorage-cloudinary-service'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'meta-tags'

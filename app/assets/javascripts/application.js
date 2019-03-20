@@ -12,7 +12,6 @@
 //= require simplemde.min
 //= require inline-attachment
 //= require codemirror-4.inline-attachment
-//= require dropzone
 
 $(document).on("turbolinks:load", function() {
   $('#form-modal-save-btn').click(function() {

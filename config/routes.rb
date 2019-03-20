@@ -14,12 +14,8 @@ Rails.application.routes.draw do
     get 'apply', to: "welcomes#recruit", as: :apply
     get 'invite/:id', to: "welcomes#invite", as: :invite
     get 'plat', to: "welcomes#map", as: :plat
+    get 'picture', to: "welcomes#photograph", as: :picture
   end
-
-  get 'select', to: "selects#select", as: :select
-  get 'advertise', to: "selects#advertise", as: :advertise
-  get 'official', to: "selects#official", as: :official
-  get 'dimension', to: "selects#dimension", as: :dimension
 
   resources :admins do
     get 'delete', on: :member
@@ -43,26 +39,30 @@ Rails.application.routes.draw do
     get 'attributes_reveal', on: :member
   end
 
-  resources :contacts, :introductions, :articles, :services, :recruits, :tags, :categories do
+  resources :contacts, :introductions, :articles, :services, :recruits do
     get 'delete', on: :member
     get 'set_weight', on: :member
     get 'set_reveal', on: :member
   end 
 
-  resources :devices do 
-    get 'rqrcode', on: :member
-    get 'delete', on: :member
-    get 'public_show', on: :member
-    resources :device_attaches do
-      get 'delete', on: :member
-      get 'delete_all', on: :collection
-    end
-  end
-
   resources :feedbacks do
     get 'delete', on: :member
   end
+  
+  resources :navbars do 
+    get 'background', on: :collection
+    put 'set_background', on: :collection
+    get 'color', on: :collection
+    put 'set_color', on: :collection
+    get 'position', on: :collection
+    put 'set_position', on: :collection
+  end
 
+  resources :basics do
+    get 'background', on: :collection
+    put 'set_background', on: :collection
+  end
+  
   resources :options do 
     get 'set_reveal', on: :member
     get 'order', on: :collection
@@ -77,17 +77,6 @@ Rails.application.routes.draw do
     put 'set_modify', on: :collection
   end
 
-  resources :set_advertises do
-    get 'contact', on: :collection
-    put 'set_contact', on: :collection
-    get 'map_height', on: :collection
-    put 'set_map_height', on: :collection
-  end
-
-  resources :set_dimensions do
-    get 'logo', on: :collection
-    put 'set_logo', on: :collection
-  end
 
   resources :maps do
     get 'delete', on: :member
@@ -100,12 +89,9 @@ Rails.application.routes.draw do
     get 'set_reveal', on: :member
   end
     
-  resources :basics
   resources :pictures, only: [:create]
   get 'kind/:id', to: "welcomes#kind", as: :kind
-  resources :logos
-  resources :trademarks do
+  resources :logos do
     get 'reveal', on: :member
-    get 'crop', on: :member
   end
 end

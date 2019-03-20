@@ -1,41 +1,16 @@
 class WelcomesController < ApplicationController
-  before_action :ensure_subdomain, except: [:index, :kind]
-  before_action :find_options, except: [:index, :kind]
-  before_action :set_select, only: [:index]
+  before_action :ensure_subdomain, except: [:index]
+  before_action :find_options, except: [:index]
 
   def index
     @user = User.find_by(email: "demo@demo.com")
     @carousels = @user.carousels.where(reveal: true)
-    @tags = @user.tags.where(reveal: true)
     set_meta_tags(keywords: @user.basic.keywords)
-  end
-
-  def kind
-    @tag = Tag.find(params[:id])
-    @articles = @tag.articles
   end
 
   def show
     set_meta_tags(keywords: @show_user.basic.keywords)
-
-    if @show_user.option == "advertise"
-      @carousels = @show_user.carousels.where(reveal: true)
-      @employees = @show_user.employees.where(reveal: true)
-      @photographs = @show_user.photographs.where(reveal: true)
-      @article = @show_user.articles.where(reveal: true).first
-      @contact = @show_user.contacts.where(reveal: true).first
-      @map = @show_user.maps.first
-      @set_advertise = @show_user.set_advertise
-      
-      #set option name
-      @map_name = @options.find_by(name: "map")
-      
-      render layout: "advertise"
-    elsif @show_user.option == "official"
-      render layout: "official"
-    elsif @show_user.option == "dimension"
-      render layout: "dimension"
-    end
+    render layout: "official"
   end
 
   def feedback
@@ -64,6 +39,15 @@ class WelcomesController < ApplicationController
       redirect_to root_path
     end
   end
+
+  def photograph
+    if @show_user.has_role?(:photograph)
+      @photographs = @show_user.photographs.where(reveal: true).page(params[:page])
+      render layout: "official"
+    else
+      redirect_to root_path
+    end
+  end 
 
   #set /release/:id
   def press
@@ -140,13 +124,9 @@ class WelcomesController < ApplicationController
         @carousels = nil
       end
       @map = @show_user.maps.first
-    end
-
-    def set_select
-      if user_signed_in?
-        unless current_user.option
-          redirect_to select_path
-        end
-      end
+      @background = @show_user.navbar.background
+      @color = @show_user.navbar.color
+      @basic_background = @show_user.basic.background
+      @navbar_position = @show_user.navbar.position
     end
 end

@@ -3,7 +3,6 @@ class OptionsController < ApplicationController
   before_action :set_options, only: [:set_reveal, :index]
   before_action :set_option, only: [:set_reveal]
   before_action :set_reveal_options, only: [:modify, :set_modify, :order]
-  before_action :set_select
 
   def index
   end
@@ -28,9 +27,6 @@ class OptionsController < ApplicationController
   end
 
   def navbar
-    unless current_user.option == "official"
-      redirect_to options_path
-    end
   end
 
   def set_navbar
@@ -41,9 +37,6 @@ class OptionsController < ApplicationController
   end
   
   def style
-    unless current_user.option == "official"
-      redirect_to options_path
-    end 
   end
 
   def set_style
@@ -69,9 +62,6 @@ class OptionsController < ApplicationController
   end
 
   def map
-    if ((current_user.option != "official") || (current_user.maps.size == 0))
-      redirect_to options_path
-    end
   end
 
   def set_map
@@ -90,14 +80,6 @@ class OptionsController < ApplicationController
     def set_options
       @available_roles = current_user.roles.reject{ |role| (role == :user) || (role == :root_admin) }.map(&:to_s)
       @options = current_user.options.where(name: @available_roles).order(reveal: :desc)
-    end
-
-    def set_select
-      unless current_user.option
-        unless current_user.has_role?(:root_admin)
-          redirect_to select_path
-        end
-      end
     end
 
     def set_reveal_options

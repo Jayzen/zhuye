@@ -1,11 +1,17 @@
 <% provide(:title, @show_user.basic.name) %>
-<% case @show_user.option %>
-  <% when "advertise" %>
-    <%= render 'advertise' %>
-  <% when "official" %>
-    <%= render 'official' %>
-  <% when 'dimension' %>
-    <%= render 'dimension' %>
-<% end -%>
-<%= content_for :javascripts do %>
-<% end -%>
+<div class="mb-2">
+  <%= render 'shared/show_middle' %>
+</div>
+<div class="row">
+  <% if @show_user.style == "left" %>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
+  <% end -%>
+  <div class="<%= @show_user.style == '' ? 'col-md-12' : 'col-md-9' %>">
+    <% if ((@show_user.map == "right") && @map) %>
+      <%= render 'shared/official_right_map' %>
+    <% end -%>
+  </div>
+  <% if @show_user.style == "right" %>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
+  <% end -%>
+</div>

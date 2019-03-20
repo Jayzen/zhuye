@@ -9,8 +9,6 @@
          <% else %>
            <span class="badge badge-primary">已隐藏</span>
          <% end -%>
-       </div>
-       <div>
          <%= link_to option.reveal? ? "隐藏" : "显示", set_reveal_option_path(option), remote: true, class: "badge badge-primary" %>
        </div>
      </div>

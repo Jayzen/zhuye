@@ -18,7 +18,9 @@
     <% unless current_user.contacts.where(reveal: true).size == 0  %>
       <div class="mt-2">
         <a href="<%= contact_basics_path %>">
-          <button type="button" class="btn <%= (action_name == 'contact') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">联系方式</button>
+          <button type="button" class="btn <%= (action_name == 'contact') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">
+            <%= current_user.options.find_by(name: "contact").show %>
+          </button>
         </a>
       </div>
     <% end -%>

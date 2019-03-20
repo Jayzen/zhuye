@@ -3,12 +3,12 @@
 </div>
 <div class="row">
   <% if @basic_contact == "left" %>
-    <div class="col-md-3"><%= render 'shared/official_left' %></div>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
   <div class="<%= @basic_contact == '' ? 'col-md-12' : 'col-md-9' %>">
     <%= @service.description %>
   </div>
   <% if @basic_contact == "right" %>
-    <div class="col-md-3"><%= render 'shared/official_left' %></div>
+    <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
 </div>

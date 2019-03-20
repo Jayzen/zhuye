@@ -9,6 +9,6 @@
     <%= link_to "导航栏设置", order_options_path, class: "nav-link #{ ((action_name == 'order') || (action_name == 'modify') || (action_name == 'navbar')) ? 'actived' : 'disabled' }" %>
   </li>
   <li class="nav-item">
-    <%= link_to "样式设置", style_options_path, class: "nav-link #{ ((action_name == 'style') || (action_name == 'map')) ? 'actived' : 'disabled' }" %>
+    <%= link_to "样式设置", background_navbars_path, class: "nav-link #{ ((action_name == 'contact') ||(action_name == 'background') || (action_name == 'map') || (action_name == 'color')) ? 'actived' : 'disabled' }" %>
   </li>
 </ul>

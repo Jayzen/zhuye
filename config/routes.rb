@@ -61,6 +61,12 @@ Rails.application.routes.draw do
   resources :basics do
     get 'background', on: :collection
     put 'set_background', on: :collection
+    get 'contact', on: :collection
+    put 'set_contact', on: :collection
+    get 'map', on: :collection
+    put 'set_map', on: :collection
+    get 'map_height', on: :collection
+    put 'set_map_height', on: :collection
   end
   
   resources :options do 
@@ -69,10 +75,6 @@ Rails.application.routes.draw do
     put 'sort', on: :collection
     get 'navbar', on: :collection
     put 'set_navbar', on: :collection
-    get 'map', on: :collection
-    put 'set_map', on: :collection
-    get 'style', on: :collection
-    put 'set_style', on: :collection
     get 'modify', on: :collection
     put 'set_modify', on: :collection
   end

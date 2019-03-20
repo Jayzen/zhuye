@@ -128,5 +128,7 @@ class WelcomesController < ApplicationController
       @color = @show_user.navbar.color
       @basic_background = @show_user.basic.background
       @navbar_position = @show_user.navbar.position
+      @basic_contact = @show_user.basic.contact
+      @basic_map = @show_user.basic.map
     end
 end

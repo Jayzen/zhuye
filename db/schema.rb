@@ -48,6 +48,9 @@ ActiveRecord::Schema.define(version: 2019_12_06_105766) do
     t.string "name"
     t.text "keywords"
     t.string "background"
+    t.string "contact"
+    t.string "map"
+    t.integer "map_height", default: 500
     t.boolean "is_name", default: false
     t.integer "user_id"
     t.datetime "created_at", null: false
@@ -220,9 +223,6 @@ ActiveRecord::Schema.define(version: 2019_12_06_105766) do
     t.string "unlock_token"
     t.datetime "locked_at"
     t.string "subdomain"
-    t.string "navbar", default: ""
-    t.string "map", default: ""
-    t.string "style", default: ""
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles"

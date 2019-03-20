@@ -4,6 +4,9 @@ class CreateBasics < ActiveRecord::Migration[5.2]
       t.string :name
       t.text :keywords
       t.string :background
+      t.string :contact
+      t.string :map
+      t.integer :map_height, default: 500 
       t.boolean :is_name, default: false
       t.integer :user_id
 

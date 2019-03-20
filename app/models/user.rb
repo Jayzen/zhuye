@@ -43,11 +43,11 @@ class User < ApplicationRecord
   end
 
   def create_one_basic
-    self.create_basic
+    self.create_basic(map: "", contact: "", background: "bg-white")
   end
 
   def create_one_navbar
-    self.create_navbar
+    self.create_navbar(position: "", background: "bg-light", color: "text-dark")
   end
 
   def sanitize_subdomain

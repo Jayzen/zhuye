@@ -1,11 +1,6 @@
 <div class="card">
   <div class="card-body d-flex flex-column">
     <div class="mt-2">
-      <a href="<%= style_options_path %>">
-        <button type="button" class="btn <%= (action_name == 'style') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">基本信息栏设置</button>
-      </a>
-    </div>
-    <div class="mt-2">
       <a href="<%= background_navbars_path %>">
         <button type="button" class="btn <%= (controller_name == "navbars" && action_name == 'background') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">头部导航栏背景</button>
       </a>
@@ -19,12 +14,23 @@
       <a href="<%= background_basics_path %>">
         <button type="button" class="btn <%= (controller_name == "basics" && action_name == 'background') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">主页背景</button>
       </a>
-    </div> 
-
+    </div>
+    <% unless current_user.contacts.where(reveal: true).size == 0  %>
+      <div class="mt-2">
+        <a href="<%= contact_basics_path %>">
+          <button type="button" class="btn <%= (action_name == 'contact') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">联系方式</button>
+        </a>
+      </div>
+    <% end -%>
     <% unless current_user.maps.size == 0 %>
       <div class="mt-2">
-        <a href="<%= map_options_path %>">
-          <button type="button" class="btn <%= (action_name == 'map') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">首页地图设置</button>
+        <a href="<%= map_basics_path %>">
+          <button type="button" class="btn <%= (action_name == 'map') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">首页地图</button>
+        </a>
+      </div>
+      <div class="mt-2">
+        <a href="<%= map_height_basics_path %>">
+          <button type="button" class="btn <%= (action_name == 'map_height') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">地图高度</button>
         </a>
       </div>
     <% end -%>

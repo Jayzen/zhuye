@@ -3,15 +3,15 @@
   <%= render 'shared/show_middle' %>
 </div>
 <div class="row">
-  <% if @show_user.style == "left" %>
+  <% if @basic_contact == "left" %>
     <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
-  <div class="<%= @show_user.style == '' ? 'col-md-12' : 'col-md-9' %>">
-    <% if ((@show_user.map == "right") && @map) %>
-      <%= render 'shared/official_right_map' %>
+  <div class="<%= @basic_contact == '' ? 'col-md-12' : 'col-md-9' %>">
+    <% if ((@basic_map == "right") && @map) %>
+      <%= render 'shared/big_map' %>
     <% end -%>
   </div>
-  <% if @show_user.style == "right" %>
+  <% if @basic_contact == "right" %>
     <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
 </div>

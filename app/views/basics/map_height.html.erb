@@ -1,0 +1,17 @@
+<%= render 'shared/nav' %>
+<div class="row">
+  <div class="col-md-3"><%= render 'shared/style_left_bar' %></div>
+  <div class="card col-md-9">
+    <div class="card-body">
+      <%= form_for(@basic, url: set_map_height_basics_path(@basic), method: :put ) do |f| %>
+        <div class="form-group">
+          <%= f.number_field :map_height, class: "form-control" %>
+        </div> 
+        <div class="form-group">
+          <%= f.submit "更新", class: "btn btn-primary"%>
+        </div>
+      <% end -%>
+    </div>
+  </div>
+  </div>
+</div>

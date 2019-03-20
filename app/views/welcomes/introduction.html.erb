@@ -2,10 +2,10 @@
   <%= render 'shared/show_middle' %>
 </div>
 <div class="row">
-  <% if @show_user.style == "left" %>
+  <% if @basic_contact == "left" %>
     <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
-  <div class="<%= @show_user.style == '' ? 'col-md-12' : 'col-md-9' %> " id="picture">
+  <div class="<%= @basic_contact == '' ? 'col-md-12' : 'col-md-9' %> " id="picture">
     <div class="card">
       <div class="card-body">
         <div id="picture">
@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <% if @show_user.style == "right" %>
+  <% if @basic_contact == "right" %>
     <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
 </div>

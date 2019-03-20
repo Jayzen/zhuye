@@ -36,16 +36,6 @@ class OptionsController < ApplicationController
     redirect_to navbar_options_path
   end
   
-  def style
-  end
-
-  def set_style
-    current_user.style = params[:option][:style]
-    current_user.save
-    flash[:success] = "样式更新成功"
-    redirect_to style_options_path
-  end
-
   def modify
   end
 
@@ -60,17 +50,6 @@ class OptionsController < ApplicationController
       redirect_to modify_options_path
     end
   end
-
-  def map
-  end
-
-  def set_map
-    current_user.map = params[:option][:map]
-    current_user.save
-    flash[:success] = "地图位置更新成功"
-    redirect_to map_options_path
-  end
-
 
   private
     def set_option

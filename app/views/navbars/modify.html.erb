@@ -5,7 +5,7 @@
     <div class="card-body">
       <div class="mb-2"><span class="small badge badge-primary">点击条目可更新条目名称</span></div>
       <% @options.each_with_index do |option, index| %>
-          <%= form_for(option, url: set_modify_options_path, method: :put) do |f| %>
+          <%= form_for(option, url: set_modify_navbars_path, method: :put) do |f| %>
             <%= f.hidden_field :id %>
             <div class="d-flex flex-row mt-1">
               <div class="d-flex flex-row">

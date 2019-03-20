@@ -56,6 +56,10 @@ Rails.application.routes.draw do
     put 'set_color', on: :collection
     get 'position', on: :collection
     put 'set_position', on: :collection
+    get 'modify', on: :collection
+    put 'set_modify', on: :collection
+    get 'order', on: :collection
+    put 'sort', on: :collection
   end
 
   resources :basics do
@@ -71,12 +75,6 @@ Rails.application.routes.draw do
   
   resources :options do 
     get 'set_reveal', on: :member
-    get 'order', on: :collection
-    put 'sort', on: :collection
-    get 'navbar', on: :collection
-    put 'set_navbar', on: :collection
-    get 'modify', on: :collection
-    put 'set_modify', on: :collection
   end
 
 

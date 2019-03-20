@@ -9,6 +9,7 @@ class WelcomesController < ApplicationController
   end
 
   def show
+    @introduction = @show_user.introductions.where(reveal: true).first
     set_meta_tags(keywords: @show_user.basic.keywords)
     render layout: "official"
   end

@@ -10,11 +10,10 @@
       <div class="d-flex justify-content-between">
         <div>
           <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
-          <%= recruit.updated_at.strftime("%F") %> | 
-          <%= recruit.title %>
+          <%= link_to recruit.title, invite_path(recruit), class: "text-dark" %>
         </div>
         <div>
-          <%= link_to '查看', invite_path(recruit), class: "badge badge-primary" %>
+          <%= recruit.updated_at.strftime("%F") %>
         </div>
       </div>
     <% end %>

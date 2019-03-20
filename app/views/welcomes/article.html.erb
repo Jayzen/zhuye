@@ -10,10 +10,10 @@
       <div class="d-flex justify-content-between">
         <div>
           <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
-          <%= release.title %>
+          <%= link_to release.title, press_path(release), class: "text-dark" %>
         </div>
         <div>
-          <%= link_to '查看', press_path(release), class: "badge badge-primary" %>
+          <%= release.updated_at.strftime("%F") %>
         </div>
       </div>
     <% end %>

@@ -7,12 +7,20 @@
   <% end -%>
   <div class="<%= @basic_contact == '' ? 'col-md-12' : 'col-md-9' %>">
     <div class="card">
+      <div class="card-header text-secondary text-center"><%= @release.title %></div>
       <div class="card-body">
+        <div class="text-secondary text-center">
+          <p><small>
+            <i class="fa fa-user fa-fw"></i><%= @release.user.email.split("@").first %>
+            · 发表于<%= time_ago_in_words(@release.created_at) %>前
+          </small></p>
+        </div>
         <div id="picture">
           <%= markdown @release.content  if @release %>
         </div>
       </div>
     </div>
+    <div class="mt-2"><%= link_to "返回", release_path, class: "btn btn-primary" %></div>
   </div>
   <% if @basic_contact == "right" %>
     <div class="col-md-3"><%= render 'shared/contact' %></div>

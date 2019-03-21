@@ -28,8 +28,8 @@
                 <div class="dropdown-divider"></div>
                 <% unless current_user.has_roles?(:root_admin) %>
                   <%= link_to "显示页面", root_url(subdomain: current_user.subdomain), target: "_blank", class: "dropdown-item" %>
-                  <%= link_to "退出", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
                 <% end -%>
+                <%= link_to "退出", destroy_user_session_path, method: "delete", class: "dropdown-item" %>
               </div>
             </li>
           <% end -%>

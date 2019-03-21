@@ -6,9 +6,24 @@
     <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
   <div class="<%= @basic_contact == '' ? 'col-md-12' : 'col-md-9' %>">
-    <%= @service.description %>
+    <div class="card">
+      <div class="card-header text-secondary text-center"><%= @service.name %></div>
+      <div class="card-body">
+        <div class="text-secondary text-center">
+          <p><small>
+            <i class="fa fa-user fa-fw"></i><%= @service.user.email.split("@").first %>
+            · 发表于<%= time_ago_in_words(@service.created_at) %>前
+          </small></p>
+        </div>
+        <div id="picture">
+          <%= markdown @service.description  if @service %>
+        </div>
+      </div>
+    </div>
+    <div class="mt-2"><%= link_to "返回", product_path, class: "btn btn-primary" %></div>
   </div>
   <% if @basic_contact == "right" %>
     <div class="col-md-3"><%= render 'shared/contact' %></div>
   <% end -%>
 </div>
+<%= render 'shared/simplemde_style' %>

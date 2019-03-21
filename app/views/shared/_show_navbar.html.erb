@@ -13,7 +13,7 @@
           <% @options.each do |option| %>
             <% unless (option.name == "carousel" || option.name == "contact") %>
               <li class="nav-item">
-                <%= link_to "#{option.show}", { controller: "welcomes", action: "#{option.name}" }, class: "nav-link #{@color} #{ action_name == option.name ? '' : '' }" %>
+                <%= link_to "#{option.show}", { controller: "welcomes", action: "#{option.name}" }, class: "nav-link #{@color} #{ action_name == option.name ? 'border-bottom border-secondary' : '' }" %>
               </li>
             <% end -%>
           <% end -%>

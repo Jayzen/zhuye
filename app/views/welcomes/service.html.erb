@@ -8,16 +8,16 @@
   <div class="<%= @basic_contact == '' ? 'col-md-12' : 'col-md-9' %>">
     <% @services.each_with_index do |service, index| %>
       <div class="d-flex justify-content-between">
-        <div>
+        <div class="text-secondary">
           <%= params[:page] ? (index + 1 + (params[:page].to_i-1)*10) : (index+1) %>.
-          <%= link_to service.name, serve_path(service), class: "text-dark" %>
+          <%= link_to service.name, serve_path(service), class: "text-secondary" %>
         </div>
-        <div>
+        <div class="small text-secondary">
           <%= service.updated_at.strftime("%F") %>
         </div>
       </div>
     <% end %>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex mt-2">
       <div><%= paginate @services %></div>
     </div> 
   </div>

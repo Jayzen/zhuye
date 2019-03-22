@@ -70,7 +70,7 @@ class BasicsController < ApplicationController
     end
 
     def basic_params
-      params.require(:basic).permit(:name, :keywords, :description, :is_name)
+      params.require(:basic).permit(:name, :keywords, :describe, :is_name)
     end
 
     def set_left_bar

@@ -3,6 +3,7 @@ class CreateBasics < ActiveRecord::Migration[5.2]
     create_table :basics do |t|
       t.string :name
       t.text :keywords
+      t.text :description
       t.string :background
       t.string :contact
       t.string :map_position

@@ -1,13 +1,19 @@
 <%= form_for(@basic, url: basic_path(@basic), method: :put) do |f| %>
   <div class="form-group">
+    <label>输入网站名称:</label>
     <%= f.text_field :name, placeholder: "输入网站名称", class: "form-control" %>
   </div>
   <div class="form-group">
-    <%= f.text_area :keywords, placeholder: "输入关键词", class: "form-control" %>
+    <label>输入网站关键词:</label>
+    <%= f.text_area :keywords, placeholder: "输入网站关键词", class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <label>输入网站描述:</label>
+    <%= f.text_area :description, placeholder: "输入网站描述", class: "form-control" %>
   </div>
   <div class="form-group">
     <select name="basic[is_name]", class="form-control">
-      <% [[Basic::Status::On, "显示名称"], [Basic::Status::Off, "隐藏名称"]].each do |row| %>
+      <% [[Basic::Status::On, "显示网站名称"], [Basic::Status::Off, "隐藏网站名称"]].each do |row| %>
         <option value="<%= row.first %>" <%= 'selected' if @basic.is_name == row.first %>><%= row.last %></option>
       <% end -%>
     </select>

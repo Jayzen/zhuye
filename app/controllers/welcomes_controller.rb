@@ -1,23 +1,15 @@
 class WelcomesController < ApplicationController
-  before_action :ensure_subdomain, except: [:index]
-  before_action :find_options, except: [:index]
-
-  def index
-    @user = User.find_by(email: "demo@demo.com")
-    @carousels = @user.carousels.where(reveal: true)
-    set_meta_tags(keywords: @user.basic.keywords)
-  end
+  layout "official"
+  before_action :ensure_subdomain
+  before_action :find_options
 
   def show
     @introduction = @show_user.introductions.where(reveal: true).first
-    set_meta_tags(keywords: @show_user.basic.keywords)
-    render layout: "official"
   end
 
   def feedback
     if @show_user.has_role?(:feedback)
       @feedback = Feedback.new
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -30,7 +22,6 @@ class WelcomesController < ApplicationController
   def introduction
     if @show_user.has_role?(:introduction)
       @introduction = @show_user.introductions.where(reveal: true).first
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -39,7 +30,6 @@ class WelcomesController < ApplicationController
   def article
     if @show_user.has_role?(:article)
       @releases = @show_user.articles.where(reveal: true).page(params[:page])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -48,7 +38,6 @@ class WelcomesController < ApplicationController
   def photograph
     if @show_user.has_role?(:photograph)
       @photographs = @show_user.photographs.where(reveal: true).page(params[:page])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -58,7 +47,6 @@ class WelcomesController < ApplicationController
   def press
     if @show_user.has_role?(:article)
       @release = @show_user.articles.where(reveal: true).find(params[:id])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -67,7 +55,6 @@ class WelcomesController < ApplicationController
   def service
     if @show_user.has_role?(:service)
       @services = @show_user.services.where(reveal: true).page(params[:page])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -77,7 +64,6 @@ class WelcomesController < ApplicationController
   def serve
     if @show_user.has_role?(:service)
       @service = @show_user.services.where(reveal: true).find(params[:id])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -86,7 +72,6 @@ class WelcomesController < ApplicationController
   def recruit
     if @show_user.has_role?(:recruit)
       @recruits = @show_user.recruits.where(reveal: true).order("updated_at desc").page(params[:page])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -96,7 +81,6 @@ class WelcomesController < ApplicationController
   def invite
     if @show_user.has_role?(:recruit)
       @recruit = @show_user.recruits.where(reveal: true).find(params[:id])
-      render layout: "official"
     else
       redirect_to root_path
     end
@@ -105,7 +89,6 @@ class WelcomesController < ApplicationController
   def map
     if @show_user.has_role?(:map)
       @map = @show_user.maps.first
-      render layout: "official"
     else
       redirect_to root_path
     end 
@@ -115,6 +98,7 @@ class WelcomesController < ApplicationController
     def ensure_subdomain
       @show_user ||= User.find_by(subdomain: request.subdomain)
       @contact = @show_user.contacts.where(reveal: true).first
+      set_meta_tags(keywords: @show_user.basic.keywords)
       redirect_to root_url(subdomain: nil) unless @show_user.present?
     end
 

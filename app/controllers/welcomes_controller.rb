@@ -98,7 +98,7 @@ class WelcomesController < ApplicationController
     def ensure_subdomain
       @show_user ||= User.find_by(subdomain: request.subdomain)
       @contact = @show_user.contacts.where(reveal: true).first
-      set_meta_tags(keywords: @show_user.basic.keywords)
+      set_meta_tags(title: @show_user.basic.name, keywords: @show_user.basic.keywords, description: @show_user.basic.description)
       redirect_to root_url(subdomain: nil) unless @show_user.present?
     end
 

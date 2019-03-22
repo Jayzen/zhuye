@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_105766) do
   create_table "basics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.text "keywords"
-    t.text "describe"
+    t.text "description"
     t.string "background"
     t.string "contact"
     t.string "map_position"

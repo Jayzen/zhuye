@@ -4,7 +4,7 @@ module API
     default_format :json
 
     get '/' do
-      "wechat index"
+      @user = User.all
     end
   end
 end

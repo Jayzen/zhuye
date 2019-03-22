@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  #api
+  mount API::Blogs => '/api'
+
   constraints(SubdomainRoutes) do 
     root "homepages#index"
   end 

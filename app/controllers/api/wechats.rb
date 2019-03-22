@@ -4,7 +4,7 @@ module API
     default_format :json
 
     get ':subdomain' do
-      @user = User.find_by(domain: params[:subdomain])
+      @user = User.find_by(subdomain: params[:subdomain])
     end
   end
 end

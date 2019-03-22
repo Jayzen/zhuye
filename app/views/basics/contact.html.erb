@@ -28,6 +28,27 @@
           <%= f.submit "更新", class: "btn btn-primary"%>
         </div>
       <% end -%>
+      <% if (@map && (@basic_contact != ""))  %>
+        <%= form_for(@basic, url: set_small_map_basics_path(@basic), method: :put ) do |f| %>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="basic[small_map]"  value=true  <%= @basic.small_map == true ? "checked" : ""%>>
+              <label class="form-check-label text-secondary">
+                显示联系栏地图
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="basic[small_map]"  value=false <%= @basic.small_map == false ? "checked" : ""%>>
+              <label class="form-check-label text-secondary">
+                不显示联系栏地图
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.submit "更新", class: "btn btn-primary"%>
+          </div>
+        <% end -%>
+      <% end -%>
     </div>
   </div>
   </div>

@@ -3,22 +3,22 @@
   <div class="col-md-3"><%= render 'shared/style_left_bar' %></div>
   <div class="card col-md-9">
     <div class="card-body">
-      <%= form_for(@basic, url: set_map_basics_path(@basic), method: :put ) do |f| %>
+      <%= form_for(@basic, url: set_map_position_basics_path(@basic), method: :put ) do |f| %>
         <div class="form-group">
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="basic[map]"  value=""  <%= @basic.map == "" ? "checked" : ""%>>
+            <input class="form-check-input" type="radio" name="basic[map_position]"  value=""  <%= @basic.map_position == "" ? "checked" : ""%>>
             <label class="form-check-label text-secondary">
               不显示
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="basic[map]"  value="left" <%= @basic.map == "left" ? "checked" : ""%>>
+            <input class="form-check-input" type="radio" name="basic[map_position]"  value="left" <%= @basic.map_position == "left" ? "checked" : ""%>>
             <label class="form-check-label text-secondary">
               放置在左边
             </label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="basic[map]"  value="right" <%= @basic.map == "right" ? "checked" : ""%>>
+            <input class="form-check-input" type="radio" name="basic[map_position]"  value="right" <%= @basic.map_position == "right" ? "checked" : ""%>>
             <label class="form-check-label text-secondary">
               放置在右边
             </label>

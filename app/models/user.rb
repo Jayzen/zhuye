@@ -38,12 +38,12 @@ class User < ApplicationRecord
   after_create :set_role, :create_one_basic, :create_one_navbar, :sanitize_subdomain, :create_options
 
   def set_role
-    self.roles = ["tag","map", "introduction", "service", "article", "photograph", "feedback", "recruit", "carousel", "contact"]
+    self.roles = ["employee", "map", "introduction", "service", "article", "photograph", "feedback", "recruit", "carousel", "contact"]
     self.save
   end
 
   def create_one_basic
-    self.create_basic(map: "", contact: "", background: "bg-white")
+    self.create_basic(map_position: "", contact: "", background: "bg-white")
   end
 
   def create_one_navbar
@@ -65,5 +65,6 @@ class User < ApplicationRecord
     self.options.create(name: "map", show: "公司地址")
     self.options.create(name: "introduction", show: "公司介绍")
     self.options.create(name: "photograph", show: "照片管理")
+    self.options.create(name: "employee", show: "团队介绍")
   end
 end

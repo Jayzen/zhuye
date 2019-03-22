@@ -3,7 +3,11 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def after_sign_in_path_for(resource)
-    options_path
+    if current_user.has_roles?(:root_admin)
+      admins_path
+    else
+      options_path
+    end
   end
 
   private

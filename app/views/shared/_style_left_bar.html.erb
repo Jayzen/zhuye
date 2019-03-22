@@ -26,8 +26,8 @@
     <% end -%>
     <% unless current_user.maps.size == 0 %>
       <div class="mt-2">
-        <a href="<%= map_basics_path %>">
-          <button type="button" class="btn <%= (action_name == 'map') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">首页地图</button>
+        <a href="<%= map_position_basics_path %>">
+          <button type="button" class="btn <%= (action_name == 'map_position') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">首页地图</button>
         </a>
       </div>
       <div class="mt-2">

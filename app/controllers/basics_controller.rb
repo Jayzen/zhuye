@@ -26,6 +26,8 @@ class BasicsController < ApplicationController
   end
 
   def contact
+    @map = current_user.maps.first
+    @basic_contact = current_user.basic.contact
   end
 
   def set_contact
@@ -35,14 +37,14 @@ class BasicsController < ApplicationController
     redirect_to contact_basics_path
   end 
 
-  def map
+  def map_position
   end
 
-  def set_map
-    @basic.map = params[:basic][:map]
+  def set_map_position
+    @basic.map_position = params[:basic][:map_position]
     @basic.save
     flash[:success] = "设置成功"
-    redirect_to map_basics_path
+    redirect_to map_position_basics_path
   end 
 
   def map_height
@@ -55,6 +57,13 @@ class BasicsController < ApplicationController
     redirect_to map_height_basics_path
   end 
 
+  def set_small_map
+    @basic.small_map = params[:basic][:small_map]
+    @basic.save
+    flash[:success] = "设置成功"
+    redirect_to contact_basics_path
+  end  
+ 
   private
     def set_basic
       @basic = current_user.basic

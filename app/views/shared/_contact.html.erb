@@ -12,7 +12,7 @@
           <div class="text-center"><i class="fa fa-wechat fa-lg"></i></div>
           <%= image_tag @contact.wechat_url, class: "card-img-top" %>
         <% end -%>
-        <% if ((@basic_map == "left") && @map && (action_name != 'map')) %>
+        <% if (@map && (action_name != 'map') && @basic_small_map) %>
           <%= render 'shared/small_map' %>
         <% end -%>
       </div>

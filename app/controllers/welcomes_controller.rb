@@ -23,6 +23,10 @@ class WelcomesController < ApplicationController
     end
   end
 
+  def employee
+  end
+
+
   def introduction
     if @show_user.has_role?(:introduction)
       @introduction = @show_user.introductions.where(reveal: true).first
@@ -130,6 +134,7 @@ class WelcomesController < ApplicationController
       @basic_background = @show_user.basic.background
       @navbar_position = @show_user.navbar.position
       @basic_contact = @show_user.basic.contact
-      @basic_map = @show_user.basic.map
+      @basic_map_position = @show_user.basic.map_position
+      @basic_small_map = @show_user.basic.small_map
     end
 end

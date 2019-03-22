@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'invite/:id', to: "welcomes#invite", as: :invite
     get 'plat', to: "welcomes#map", as: :plat
     get 'picture', to: "welcomes#photograph", as: :picture
+    get 'staff', to: "welcomes#employee", as: :staff
   end
 
   resources :admins do
@@ -67,10 +68,11 @@ Rails.application.routes.draw do
     put 'set_background', on: :collection
     get 'contact', on: :collection
     put 'set_contact', on: :collection
-    get 'map', on: :collection
-    put 'set_map', on: :collection
+    get 'map_position', on: :collection
+    put 'set_map_position', on: :collection
     get 'map_height', on: :collection
     put 'set_map_height', on: :collection
+    put 'set_small_map', on: :collection
   end
   
   resources :options do 

@@ -3,8 +3,8 @@ module API
     content_type :json, 'application/json'
     default_format :json
 
-    get '/' do
-      @user = User.all
+    get ':subdomain' do
+      @user = User.find_by(domain: params[:subdomain])
     end
   end
 end

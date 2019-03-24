@@ -5,7 +5,7 @@ module API
 
     get ':subdomain' do
       @user = User.find_by(subdomain: params[:subdomain])
-      {carousels: @user.carousels.where(reveal: true) }
+      {carousels: @user.carousels.where(reveal: true), services: @user.services.where(reveal: true)}
     end
   end
 end

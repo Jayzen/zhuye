@@ -1,39 +1,25 @@
 <div class="card">
   <div class="card-body d-flex flex-column">
     <div class="mt-2">
-      <a href="<%= background_navbars_path %>">
-        <button type="button" class="btn <%= (controller_name == "navbars" && action_name == 'background') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">头部导航栏背景</button>
-      </a>
+      <%= link_to "头部导航栏背景", background_navbars_path, class: "btn #{ (controller_name == "navbars" && action_name == 'background') ? 'btn-primary' : 'btn-outline-secondary' }  btn-block"%>
     </div>
     <div class="mt-2">
-      <a href="<%= color_navbars_path %>">
-        <button type="button" class="btn <%= (action_name == 'color') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">头部导航栏字体</button>
-      </a>
+      <%= link_to "头部导航栏字体", color_navbars_path, class: "btn #{ (action_name == 'color') ? 'btn-primary' : 'btn-outline-secondary' }  btn-block"%>
     </div> 
     <div class="mt-2">
-      <a href="<%= background_basics_path %>">
-        <button type="button" class="btn <%= (controller_name == "basics" && action_name == 'background') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">主页背景</button>
-      </a>
+      <%= link_to "主页背景", background_basics_path, class: "btn #{ (controller_name == "basics" && action_name == 'background') ? 'btn-primary' : 'btn-outline-secondary' }  btn-block"%>
     </div>
     <% unless current_user.contacts.where(reveal: true).size == 0  %>
       <div class="mt-2">
-        <a href="<%= contact_basics_path %>">
-          <button type="button" class="btn <%= (action_name == 'contact') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">
-            <%= current_user.options.find_by(name: "contact").show %>
-          </button>
-        </a>
+        <%= link_to current_user.options.find_by(name: "contact").show, contact_basics_path, class: "btn #{ (action_name == 'contact') ? 'btn-primary' : 'btn-outline-secondary' }  btn-block"%>
       </div>
     <% end -%>
     <% unless current_user.maps.size == 0 %>
       <div class="mt-2">
-        <a href="<%= map_position_basics_path %>">
-          <button type="button" class="btn <%= (action_name == 'map_position') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">首页地图</button>
-        </a>
+        <%= link_to "首页地图", map_position_basics_path, class: "btn #{ (action_name == 'map_position') ? 'btn-primary' : 'btn-outline-secondary' }  btn-block"%>
       </div>
       <div class="mt-2">
-        <a href="<%= map_height_basics_path %>">
-          <button type="button" class="btn <%= (action_name == 'map_height') ? 'btn-primary' : 'btn-outline-secondary' %> btn-block">地图高度</button>
-        </a>
+        <%= link_to "地图高度", map_height_basics_path, class: "btn #{ (action_name == 'map_height') ? 'btn-primary' : 'btn-outline-secondary' }  btn-block"%>
       </div>
     <% end -%>
   </div>

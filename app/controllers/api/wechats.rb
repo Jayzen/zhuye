@@ -9,7 +9,8 @@ module API
        name: @user.basic.name,
        contact: @user.contacts.where(reveal: true).first,
        introduction: @user.introductions.where(reveal: true).first,
-       map: @user.maps.first
+       map: @user.maps.first,
+       services: @user.services.where(reveal: true)
       }
     end
 

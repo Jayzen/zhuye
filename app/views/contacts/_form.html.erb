@@ -10,10 +10,17 @@
   <% end -%>
 
   <div class="form-group">
-    <%= form.text_field :telephone, placeholder: "输入联系方式", class: "form-control" %>
+    <label>输入手机号码</label>
+    <%= form.number_field :telephone, placeholder: "输入手机号码", class: "form-control" %>
   </div>
-  
+
   <div class="form-group">
+    <label>输入qq号码</label>
+    <%= form.number_field :qq, placeholder: "输入qq号码", class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>输入地址</label>
     <%= form.text_field :address, placeholder: "输入地址", class: "form-control" %>
   </div>
 

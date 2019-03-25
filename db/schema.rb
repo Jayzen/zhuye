@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_105766) do
     t.string "telephone"
     t.string "address"
     t.string "wechat"
+    t.string "qq"
     t.boolean "is_telephone", default: false
     t.boolean "is_address", default: false
     t.boolean "is_wechat", default: false

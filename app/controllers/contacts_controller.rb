@@ -74,7 +74,7 @@ class ContactsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def contact_params
-      params.require(:contact).permit(:telephone, :address, :wechat, :is_telephone, :is_address, :is_wechat)
+      params.require(:contact).permit(:telephone, :qq, :address, :wechat, :is_telephone, :is_address, :is_wechat)
     end
 
     def set_contacts

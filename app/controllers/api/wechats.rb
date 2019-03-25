@@ -6,8 +6,10 @@ module API
     get ':subdomain' do
       @user = User.find_by(subdomain: params[:subdomain])
       {carousels: @user.carousels.where(reveal: true), 
-       services: @user.services.where(reveal: true),
-       introduction: @user.introductions.where(reveal: true).first
+       name: @user.basic.name,
+       contact: @user.contacts.where(reveal: true).first,
+       introduction: @user.introductions.where(reveal: true).first,
+       map: @user.maps.first
       }
     end
 

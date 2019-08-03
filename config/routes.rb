@@ -82,7 +82,6 @@ Rails.application.routes.draw do
     get 'set_reveal', on: :member
   end
 
-
   resources :maps do
     get 'delete', on: :member
     get 'set_weight', on: :member

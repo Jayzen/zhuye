@@ -4,7 +4,7 @@
       <%= link_to @show_user.basic.name, root_path, class: "navbar-brand #{@color}" %>
     <% end -%>
     <% if ( @show_user.logo && @show_user.logo.reveal? && (@show_user.logo.name.size != 0)) %>
-      <%= image_tag @user.logo.name.url(:large), height: "50", class: "rounded"%>
+      <%= image_tag @show_user.logo.name.url(:large), height: "50", class: "rounded"%>
     <% end -%>
     <% if @navbar_position == "" %>
       <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>

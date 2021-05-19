@@ -101,8 +101,6 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    dropzonejs-rails (0.8.4)
-      rails (> 3.1)
     equalizer (0.0.11)
     erubi (1.8.0)
     execjs (2.7.0)
@@ -172,7 +170,9 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mimemagic (0.3.3)
+    mimemagic (0.3.10)
+      nokogiri (~> 1)
+      rake
     mini_magick (4.9.3)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
@@ -196,7 +196,8 @@ GEM
       activerecord (> 4.0.0)
     popper_js (1.14.5)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (2.0.6)
     rack-accept (0.4.5)
       rack (>= 0.4)
@@ -311,7 +312,6 @@ DEPENDENCIES
   coderay
   coffee-rails (~> 4.2)
   devise
-  dropzonejs-rails
   faker
   font-awesome-rails
   grape (~> 1.0.1)
@@ -330,7 +330,7 @@ DEPENDENCIES
   momentjs-rails
   mysql2
   petergate
-  puma (~> 3.11)
+  puma (~> 4.3)
   rack-cors
   rack-mini-profiler
   rails (~> 5.2.2)
